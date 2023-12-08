@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "pretocheiroso-f7634": {
+      "hosting": {
+        "app": [
+          "pretocheiroso-f7634"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "pretocheiroso-f7634"
+  }
+}
