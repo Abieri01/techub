@@ -1,0 +1,16 @@
+form{
+    width: 280px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+}
+
+ion-input{
+    margin: 15px;
+    border-radius: 10px;
+    border: 1px solid black;
+    
+}
+
