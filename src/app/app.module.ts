@@ -30,7 +30,6 @@ const firebaseConfig = {
     provideAuth(() => getAuth()),
     provideFirestore(() => getFirestore()),
     provideStorage(() => getStorage()),
-    provideFirebaseApp(() => initializeApp({"projectId":"pretocheiroso-f7634","appId":"1:275058441324:web:b4fab7d4e40da99367ac49","storageBucket":"pretocheiroso-f7634.appspot.com","apiKey":"AIzaSyCsSCtKp3YjQbFBJSEP9UQ7WzawlsLIOU8","authDomain":"pretocheiroso-f7634.firebaseapp.com","messagingSenderId":"275058441324"}))
   ],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
   bootstrap: [AppComponent],

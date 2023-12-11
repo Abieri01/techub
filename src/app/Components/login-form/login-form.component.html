@@ -1,9 +1,16 @@
-<form *ngIf="!cad">
+<div *ngIf="logado">
+  <ion-img src={{user.foto}}></ion-img>
+  <h1>{{user.nome}}</h1>
+<ion-button (click)="logout()">LogOut</ion-button>
+</div>
+<form *ngIf="!cad && !logado">
   <h1>Formulário de Login</h1>
 <ion-input label="Email" label-placement="floating" fill="outline" placeholder="Insira seu e-mail" #email></ion-input>
 <ion-input label="Senha" type="password" label-placement="floating" fill="outline" placeholder="Insira sua senha" #senha></ion-input>
 <ion-button expand="block" (click)="Logar(email.value, senha.value)">Login</ion-button>
 <p>Não é cadastrado ? <a (click)="cad=!cad">Cadastre-se</a></p>
+
+<ion-button fill="outline" expand="block" (click)="logincomGoogle()"><ion-thumbnail><img src="../../../assets/logos/google-37.png"></ion-thumbnail>Logar com Google</ion-button>
 </form>
 
 <form *ngIf="cad">
@@ -11,7 +18,12 @@
 <ion-input label="Email" label-placement="floating" fill="outline" placeholder="Insira seu e-mail" #email></ion-input>
 <ion-input label="Senha" type="password" label-placement="floating" fill="outline" placeholder="Insira sua senha" #senha></ion-input>
 <ion-input label="Repita sua senha" type="password" label-placement="floating" fill="outline" placeholder="Insira novamente sua senha" #RpSenha></ion-input>
-<p>{{mensagem}}</p>
 <ion-button expand="block" (click)="cadUser(email.value, senha.value, RpSenha.value)">Cadastrar</ion-button>
 <p>Já possui login ? <a (click)="cad=!cad">Logar</a></p>
 </form>
+<ion-toast
+    [isOpen]="isToastOpen"
+    message={{mensagem}}
+    [duration]="5000"
+    (didDismiss)="setOpen(false)"
+  ></ion-toast>
