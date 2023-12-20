@@ -10,7 +10,15 @@ const routes: Routes = [
   {
     path: 'folder/:id',
     loadChildren: () => import('./folder/folder.module').then( m => m.FolderPageModule)
+  },  {
+    path: 'produtos',
+    loadChildren: () => import('./Pages/produtos/produtos.module').then( m => m.ProdutosPageModule)
+  },
+  {
+    path: 'cad-produtos',
+    loadChildren: () => import('./Pages/cad-produtos/cad-produtos.module').then( m => m.CadProdutosPageModule)
   }
+
 ];
 
 @NgModule({

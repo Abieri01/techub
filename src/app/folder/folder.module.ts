@@ -8,7 +8,6 @@ import { FolderPageRoutingModule } from './folder-routing.module';
 
 import { FolderPage } from './folder.page';
 import { LoginFormComponent } from '../Components/login-form/login-form.component';
-
 @NgModule({
   imports: [
     CommonModule,
