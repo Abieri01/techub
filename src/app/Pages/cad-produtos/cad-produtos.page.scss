@@ -66,7 +66,7 @@ ion-menu-button {
 }
 
 ion-content{
-  --background:rgb(199, 199, 199);
+  --background:rgb(232, 232, 232);
 }
 form{
   display: flex;
@@ -83,7 +83,7 @@ ion-input{
   height: 5px;
   padding: 0;
   text-align: left;
-  --pading-start: 15px;
+  --padding-start: 15px;
 }
 
 ion-thumbnail{
@@ -93,21 +93,23 @@ ion-button{
   background-color: #fff;
   border-radius: 15px;
 }
-
 .images{
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: center;
-  align-items: center;
+  align-content: center; 
 }
-
 ion-card{
   width: 80px;
   margin: 4px;
 }
-
-.imgsrc{
+ion-item{
+  margin: 8px;
+}
+.imgSrc{
   width: 110px;
-
+}
+#cadImg{
+  display: none;
 }
