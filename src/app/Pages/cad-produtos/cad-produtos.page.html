@@ -18,6 +18,7 @@
 
 </ion-content> -->
 
+
 <ion-toolbar>
   <ion-buttons slot="start">
     <ion-menu-button></ion-menu-button>
@@ -49,7 +50,8 @@
 
       <img *ngIf="isImg" src={{imgSrc}} class="imgSrc">
 
-      <ion-button expand="block" (click)="cadastrarProduto(productName.value,productDescript.value,preco.value,Qtd.value)">Cadastrar</ion-button>
+      <ion-button expand="block"
+        (click)="cadastrarProduto(productName.value,productDescript.value,preco.value,Qtd.value)">Cadastrar</ion-button>
 
     </form>
 
@@ -69,8 +71,8 @@
       <div class="block">
         <h3>Selecione a imagem do produto</h3>
         <button (click)="hideShow()">Selecione a imagem</button>
-        <input id="cadImg" type="file" (change)="carregarFoto($event)" label="Imagem" label-placement="floating" fill="solid"
-          placeholder="Selecione a imagem do produto"/>
+        <input id="cadImg" type="file" (change)="carregarFoto($event)" label="Imagem" label-placement="floating"
+          fill="solid" placeholder="Selecione a imagem do produto" />
 
         <div class="images">
           <ion-card *ngFor="let img of images" (click)="selectImage(img, modal)">

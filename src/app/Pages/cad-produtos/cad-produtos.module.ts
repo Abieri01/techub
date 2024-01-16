@@ -9,14 +9,12 @@ import { CadProdutosPageRoutingModule } from './cad-produtos-routing.module';
 import { CadProdutosPage } from './cad-produtos.page';
 
 
-
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
     CadProdutosPageRoutingModule,
-  
   ],
   declarations: [CadProdutosPage]
 })
