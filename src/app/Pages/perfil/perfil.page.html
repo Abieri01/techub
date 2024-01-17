@@ -1,8 +1,13 @@
 <ion-toolbar>
   <ion-buttons slot="start">
     <ion-menu-button></ion-menu-button>
+    
   </ion-buttons>
+ <ion-icon name="cart-sharp" slot="end"></ion-icon>
 </ion-toolbar>
+
+
+
 
 <ion-content [fullscreen]="true">
   <swiper-container autoplay="3000" speed="800" pagination="true">
@@ -10,4 +15,65 @@
     <swiper-slide><img src="../../assets/logos/_860fa8b5-a023-4b74-b664-f8c9e4445501.jpg"/></swiper-slide>
     <swiper-slide><img src="../../assets/logos/_a4002d69-2dac-43b4-b746-39146bcbaac9.jpg"/></swiper-slide>
   </swiper-container>
+
+
+  <ion-card-content>
+    <ion-list>
+      <ion-item >
+        <ion-thumbnail slot="start" >
+          <img alt="Silhouette of mountains" src="https://images.kabum.com.br/produtos/fotos/470987/placa-de-video-rtx-4060-eagle-oc-gigabyte-nvidia-geforce-8gb-gdrr6-dlss-ray-tracing-gv-n4060eagle-oc-8gd_1687981181_gg.jpg" />
+        </ion-thumbnail>
+        <ion-label>Placa de Vídeo RTX 4060</ion-label>
+      </ion-item>
+  
+      <ion-item>
+        <ion-thumbnail slot="start">
+          <img alt="Silhouette of mountains" src="https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcRiEgrTwZ2mojZamWM0EegrR8kNMaSyRM5W6fPpbQzJ8IqJRd8oWbk45eD_YJIIm89bZsfQl4oa2Dpz6bIeudepdquyf5hnOTUjvjXfTS-V3DhNIQVK5WiL&usqp=CAE" />
+        </ion-thumbnail>
+        <ion-label>Notebook Gamer Acer</ion-label>
+      </ion-item>
+  
+      <ion-item>
+        <ion-thumbnail slot="start">
+          <img alt="Silhouette of mountains" src="https://images.kabum.com.br/produtos/fotos/380745/ssd-kingston-nv2-1-tb-m-2-2280-pcie-nvme-leitura-2-100-mb-s-e-gravacao-1-700-mb-s-snv2s-1000g_1666033119_gg.jpg" />
+        </ion-thumbnail>
+        <ion-label>SSD 1TB Kingston</ion-label>
+      </ion-item>
+  
+      <ion-item lines="none">
+        <ion-thumbnail slot="start">
+          <img alt="Silhouette of mountains" src="https://carrefourbr.vtexassets.com/arquivos/ids/134432978-1280-auto?v=638354887287730000&width=1280&height=auto&aspect=true" />
+        </ion-thumbnail>
+        <ion-label>Console PlayStation 5</ion-label>
+      </ion-item>
+      <ion-button >Saiba mais</ion-button>
+      
+    </ion-list>
+  </ion-card-content>
+
+  <div class="departs">
+    <ion-item [button]="true" lines="none" class="bola">
+      <ion-icon name="apps-outline"></ion-icon>
+      <ion-label>DEPARTAMENTOS  </ion-label>
+      <ion-note slot="end">Ver todos</ion-note>
+    </ion-item>
+    </div>
+    
+    <ion-row>
+      <ion-col class="i1">HARDWARE<img src="../../assets/logos/pngwing.com (1).png"/></ion-col>
+      <ion-col class="i2">CONSOLE<img src="../../assets/logos/Console-PNG-Picture.png"/></ion-col>
+    </ion-row>
+    
+    <ion-row>
+      <ion-col class="i3">PERIFÉRICOS<img src="../../assets/logos/kisspng-computer-keyboard-computer-mouse-bg-gaming-delta-f-keyboards-guadalsistema-5baae32e912f12.8488222815379259345947.png"/></ion-col>
+      <ion-col class="i4">CELULARES<img src="../../assets/logos/pngwing.com.png"/></ion-col>
+    </ion-row>
+    
+    <ion-row>
+      <ion-col class="i5">COMPUTADORES<img src="../../assets/logos/pngwing.com (3).png"/></ion-col>
+      <ion-col class="i6">TELEVISÃO<img src="../../assets/logos/pngwing.com (4).png"/></ion-col>
+    </ion-row>
+
+
+
 </ion-content>
