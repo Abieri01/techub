@@ -1,9 +1,10 @@
 <ion-toolbar>
   <ion-buttons slot="start">
     <ion-menu-button></ion-menu-button>
-    
-  </ion-buttons>
- <ion-icon name="cart-sharp" slot="end"></ion-icon>
+    <ion-toggle slot="end" mode="ios"  [checked]="darkMode"
+    (ionChange)="toggleDarkMode()"></ion-toggle>
+    </ion-buttons>
+ <ion-icon name="cart-sharp" slot="end" style="width: 100%;"></ion-icon>
 </ion-toolbar>
 
 

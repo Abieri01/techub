@@ -10,6 +10,8 @@ import { getFirestore, provideFirestore } from '@angular/fire/firestore';
 import { provideAuth, getAuth } from '@angular/fire/auth';
 import { provideStorage, getStorage } from '@angular/fire/storage';
 
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+
 const firebaseConfig = {
   apiKey: "AIzaSyCZF-NX9fIM3HBNyBivNmQ2VHLizUkZzP8",
   authDomain: "techhubconnect-3f5d5.firebaseapp.com",
