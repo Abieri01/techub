@@ -14,6 +14,7 @@ export class CadProdutosPage implements OnInit {
   imgSrc: any
   isImg: boolean = false
   preco1:string=''
+  isToastOpen = false;
   constructor(private storage: Storage, private firestore:Firestore) { }
   ngOnInit() {
     this.listarProdutos()
@@ -57,7 +58,11 @@ export class CadProdutosPage implements OnInit {
       });
   }
 
-  cadastrarProduto(nomeProduto:any, descProduto:any, precoProduto:any, qtdProduto:any) {
+  mensagem(isOpen: boolean){
+    this.isToastOpen = isOpen;
+  }
+
+  cadastrarProduto(isOpen: boolean, nomeProduto:any, descProduto:any, precoProduto:any, qtdProduto:any) {
     const produto = {
       nome:nomeProduto,
       descricao:descProduto,
@@ -66,6 +71,7 @@ export class CadProdutosPage implements OnInit {
       image:this.imgSrc
     }
     const document = doc(collection(this.firestore, 'Produtos'));
+    this.mensagem(isOpen)
     return setDoc(document, produto);
   }
   hideShow(){

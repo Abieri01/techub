@@ -1,6 +1,9 @@
-<ion-buttons slot="start">
-  <ion-menu-button></ion-menu-button>
-</ion-buttons><ion-content>
+<ion-toolbar>
+  <ion-buttons slot="start">
+    <ion-menu-button></ion-menu-button>
+  </ion-buttons>
+</ion-toolbar>
+<ion-content>
   <ion-card>
     <ion-card-header>
       <ion-card-title>Editar Produtos</ion-card-title>
@@ -12,7 +15,7 @@
             <ion-row *ngFor="let p of produtos">
               <ion-col>
                 <ion-thumbnail slot="start">
-                  <img src={{p.image}} />
+                  <img src={{p.image}}/>
                 </ion-thumbnail>
               </ion-col>
               <ion-col>
@@ -59,7 +62,7 @@
           <label>Descrição:</label>
           <ion-textarea [autoGrow]="true" fill="outline" value={{produto.descricao}} #productDescript (change)="this.produto.descricao=productDescript.value"></ion-textarea>
           <label>Valor:</label>
-          <ion-input fill="outline" value="R$ {{produto.preco}}" #preco (change)="this.produto.preco=preco.value"></ion-input>
+          <ion-input fill="outline" value="{{produto.preco}}" #preco (change)="this.produto.preco=preco.value"></ion-input>
           <label>Quantidade:</label>
           <ion-input fill="outline" type="number" value={{produto.qtd}} #Qtd (change)="this.produto.qtd=Qtd.value"></ion-input>
           <label>Imagem:</label>

@@ -160,21 +160,7 @@ ion-fab{
     right: 25px;
 }
 
-.envio > ion-icon{
-    margin-right: 10px;
-}
 
-.envio{
-    border-top: 0.5px solid rgb(0, 0, 0);
-}
-
-.natal > ion-icon{
-    margin-right: 10px;
-}
-
-.bola > ion-icon{
-    margin-right: 10px;
-}
 
 
 .carrinho{
@@ -193,7 +179,6 @@ ion-list{
     padding: 25px;
     --ion-background-color: white;
     border: 1px solid rgba(0, 0, 0, 0.199);
-    box-shadow: 4px 4px 10px;
     margin: 10px;
 }
 
@@ -232,9 +217,7 @@ ion-col > img {
 }
 
 
-ion-content {
-    --ion-background-color: #d6d6d6; /* Substitua '#111D12' pela cor desejada */
-  }
+
 
   ion-carousel {
     width: 100%;
@@ -269,7 +252,4 @@ ion-content {
     justify-content: center;
   }
 
-  ion-toggle {
-    margin-left: 230px;
-    
-  }
+  
