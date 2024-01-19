@@ -79,6 +79,7 @@ export class ServTecnicoPage implements OnInit {
     this.filterItems();
   }
 
+
   checkAppMode() {
     const checkIsDarkMode = localStorage.getItem('darkModeActivated');
     this.darkMode = checkIsDarkMode === 'true';
@@ -124,4 +125,5 @@ export class ServTecnicoPage implements OnInit {
     }
     return stars;
   }
+
 }

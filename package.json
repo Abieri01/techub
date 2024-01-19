@@ -31,6 +31,7 @@
     "@capacitor/preferences": "^5.0.6",
     "@capacitor/status-bar": "5.0.6",
     "@ionic/angular": "^7.0.0",
+    "dark-mode-toggle": "^0.15.0",
     "firebase": "^10.7.1",
     "git": "^0.1.5",
     "ionicons": "^7.0.0",

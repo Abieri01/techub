@@ -3,6 +3,7 @@
     <ion-menu contentId="main-content" type="overlay">
       <ion-content>
         <ion-list id="inbox-list">
+
           <ion-title>
             <img src="../assets/logos/logo.png" alt="Logo" style="max-width: 200%; height: auto; width: 100px;">
           </ion-title>
@@ -12,7 +13,7 @@
             <ion-label class="dark-mode-text" style="margin-left: 10px;">Modo Escuro</ion-label>
             <ion-toggle class="dark-mode-toggle" slot="end" mode="ios" [checked]="darkMode" (ionChange)="toggleDarkMode()" style="margin-left: 60px;"></ion-toggle>
           </div>
-
+          
           <ion-list-header>Menu principal</ion-list-header>
           
           <ion-menu-toggle auto-hide="false" *ngFor="let p of appPages; let i = index">
