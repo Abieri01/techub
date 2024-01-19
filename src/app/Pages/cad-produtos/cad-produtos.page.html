@@ -51,7 +51,7 @@
       <img *ngIf="isImg" src={{imgSrc}} class="imgSrc">
 
       <ion-button expand="block"
-        (click)="cadastrarProduto(productName.value,productDescript.value,preco.value,Qtd.value)">Cadastrar</ion-button>
+        (click)="cadastrarProduto(true, productName.value,productDescript.value,preco.value,Qtd.value)">Cadastrar</ion-button>
 
     </form>
 
@@ -62,7 +62,8 @@
 
 
 
-
+<ion-toast [isOpen]="isToastOpen" message="Produto cadastrado com sucesso." [duration]="5000"
+    (didDismiss)="mensagem(false)"></ion-toast>
 
 
 <ion-modal #modal trigger="open-modal" [initialBreakpoint]="1" [breakpoints]="[0, 1]">

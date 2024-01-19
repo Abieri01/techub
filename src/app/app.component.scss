@@ -118,3 +118,21 @@ ion-item.selected {
   --color: var(--ion-color-primary);
 }
 
+.dark-mode-container {
+  display: flex;
+  align-items: center;
+  padding: 16px;
+}
+
+.dark-mode-text {
+  margin-right: 8px;
+  font-weight: 400;
+}
+
+.dark-mode-toggle {
+  margin-right: 8px;
+}
+
+.dark-mode-icon {
+  font-size: 32px;
+}
