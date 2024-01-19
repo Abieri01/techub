@@ -1,7 +1,10 @@
 <ion-toolbar>
   <ion-buttons slot="start">
     <ion-menu-button></ion-menu-button>
-    </ion-buttons>
+    <ion-button (click)="goToProfilePage()">
+      <ion-icon name="cart"></ion-icon> <!-- Use o ícone apropriado para o perfil -->
+    </ion-button>
+  </ion-buttons>
 </ion-toolbar>
 <ion-content>
   <h1>Produtos</h1>
@@ -9,11 +12,12 @@
     <img src={{p.image}}/>
     <ion-card-header>
       <ion-card-title><div class="pcort">{{p.preco.replace('.',',')}}</div>
-        <div class="desconto"> -30% R$ {{((p.preco-(p.preco*0.3)).toFixed(2)).replace('.',',')}}</div></ion-card-title>
+        </ion-card-title>
       <ion-card-subtitle>{{p.nome}}</ion-card-subtitle>
     </ion-card-header>
     <ion-card-content>
       {{p.descricao}}
     </ion-card-content>
+    <ion-button>Comprar</ion-button>
   </ion-card>
 </ion-content>
