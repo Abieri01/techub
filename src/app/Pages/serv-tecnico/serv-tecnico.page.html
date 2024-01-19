@@ -1,45 +1,54 @@
 
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Serviço Técnico</ion-title>
+  </ion-toolbar>
+</ion-header>
 
-    
-    <ion-toolbar>
-      <ion-buttons slot="start">
-        <ion-menu-button></ion-menu-button>
-      </ion-buttons>
-        <ion-title>Serviço Técnico</ion-title>
-    </ion-toolbar>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large"></ion-title>
-    </ion-toolbar>
-  </ion-header>
+
+  <ion-item>
+    <ion-label>Categoria de Pesquisa</ion-label>
+    <ion-select [(ngModel)]="searchCategory" (ionChange)="filterItems()">
+      <ion-select-option value="all">Todas</ion-select-option>
+      <ion-select-option value="montagem">Manutenção de Computadores</ion-select-option>
+      <ion-select-option value="instalação">Instalação de cabo de internet</ion-select-option>
+      <ion-select-option value="hardware">Manutenção e reparo de hardwares</ion-select-option>
+      <ion-select-option value="above3stars">Avaliação acima de 4 estrelas</ion-select-option>
+      <ion-select-option value="below3stars">Avaliação abaixo de 4 estrelas</ion-select-option>
+    </ion-select>
+  </ion-item>
+
+  <ion-card *ngFor="let tecnico of searchResults">
+    <img alt="Silhouette of mountains" src="https://ionicframework.com/docs/img/demos/card-media.png" />
+    <ion-card-header>
+      <ion-card-title>{{ tecnico.nome }} - {{ tecnico.profissao }}</ion-card-title>
+      <ion-card-subtitle>
+        <ion-icon *ngFor="let i of getStars(tecnico.avaliacao)" name="star"></ion-icon>
+        {{ tecnico.avaliacao.toFixed(1) }} 
+      </ion-card-subtitle>
+    </ion-card-header>
+
+    <ion-card-content>
+      Descrição - {{ tecnico.descricao }}<br><br><br>
+      Dias de atendimento - {{ tecnico.diasAtendimento }}<br>
+      Horario de atendimento - {{ tecnico.horarioAtendimento }} <br>
+      Custo do serviço - {{ tecnico.custoServico }}
+    </ion-card-content>
+
+    <ion-button (click)="setOpen(true)" style="width: 100%;">Contratar</ion-button>
+    <ion-alert
+      [isOpen]="isAlertOpen"
+      header="Olá, após o pedido ter sido feito o técnico deverá chegar em até 1 hora. "
+      subHeader=""
+      message= ""
+      [buttons]="alertButtons"
+      (didDismiss)="setOpen(false)"
+    ></ion-alert>
+  </ion-card>
+
 </ion-content>
-
-<ion-card>
-  <img alt="Silhouette of mountains" src="https://ionicframework.com/docs/img/demos/card-media.png" />
-  <ion-card-header>
-    <ion-card-title>Patick Braz - Técnico de informática</ion-card-title>
-    <ion-card-subtitle></ion-card-subtitle>
-  </ion-card-header>
-
-  <ion-card-content>
-   Descrição - Manutenção de hardware: diagnósticos, reparos e montagem de computadores.Patick Braz - Técnico de informática<br><br><br>
-   Dias de atendimento - Segunda a sabado.<br>
-   Horario de atendimento - 8:00 / 18:00 <br>
-   Custo do serviço - R$ 150,00
-    
-  </ion-card-content>
-
-<ion-button (click)="setOpen(true)" style="width: 100%;">Contratar</ion-button>
-<ion-alert
-  [isOpen]="isAlertOpen"
-  header="Olá, após o pedido ter sido feito o técnico deverá chegar em até 1 hora. "
-  subHeader=""
-  message= ""
-  [buttons]="alertButtons"
-  (didDismiss)="setOpen(false)"
-></ion-alert>
-</ion-card> 
-
-
