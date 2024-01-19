@@ -1,5 +1,7 @@
 import { Component, OnInit} from '@angular/core';
 import { Auth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signInWithPopup, GoogleAuthProvider, signOut } from '@angular/fire/auth';
+import { NavController } from '@ionic/angular';
+
 @Component({
   selector: 'app-login-form',
   templateUrl: './login-form.component.html',
@@ -32,7 +34,13 @@ export class LoginFormComponent implements OnInit {
           // Signed up 
           const user = userCredential.user;
           // ...
-        })
+          // Adicione a mensagem de sucesso
+        this.mensagem = 'Cadastro realizado com sucesso!';
+        this.setOpen(true);
+
+        // Navegue para a página /perfil após o cadastro bem-sucedido
+        this.navCtrl.navigateForward('/cadastro');
+      })
         .catch((error) => {
           const errorCode = error.code;
           const errorMessage = error.message;
@@ -83,7 +91,7 @@ export class LoginFormComponent implements OnInit {
   logOutComGoogle(){
     return signOut(this.auth)
   }
-  constructor(private auth: Auth) { }
+  constructor(private auth: Auth, private navCtrl: NavController) { }
 
   ngOnInit() { }
 
