@@ -27,13 +27,13 @@ produtos de maneira descomplicada. Além disso, a startup desenvolveu uma comuni
 
 ## Ferramentas de desenvolvimento
 
-- TypeScript (46,7%)
+- TypeScript (50,3%)
 
-- SCSS (27,8%)
+- SCSS (23,9%)
 
-- HTML (23,3%)
+- HTML (24,2%)
 
-- JavaScript (2,2%)
+- JavaScript (1,6%)
 
 - IONIC (Framework)
 
