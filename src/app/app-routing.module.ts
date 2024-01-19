@@ -34,7 +34,11 @@ const routes: Routes = [
   {
     path: 'serv-tecnico',
     loadChildren: () => import('./Pages/serv-tecnico/serv-tecnico.module').then( m => m.ServTecnicoPageModule)
+  },  {
+    path: 'carrinho',
+    loadChildren: () => import('./Pages/carrinho/carrinho.module').then( m => m.CarrinhoPageModule)
   }
+
 
 ];
 

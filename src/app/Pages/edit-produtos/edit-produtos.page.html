@@ -84,12 +84,15 @@
           </div>
 
           <ion-button expand="block"
-            (click)="EditarProduto()">Editar</ion-button>
+            (click)="EditarProduto(true)">Editar</ion-button>
             <ion-button expand="block" (click)="isModalOpen=!isModalOpen">Voltar</ion-button>
           </form>
+
+          
         
       </div>
-
+      <ion-toast [isOpen]="isToastOpen" message="Produto editado." [duration]="5000"
+      (didDismiss)="mensagem(false)"></ion-toast>
     </ion-content>
   </ng-template>
 </ion-modal>

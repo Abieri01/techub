@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { collection, Firestore, getDocs } from '@angular/fire/firestore';
 import { getStorage, ref, listAll, Storage, getDownloadURL } from '@angular/fire/storage';
+import { NavController } from '@ionic/angular';
+
+
 @Component({
   selector: 'app-produtos',
   templateUrl: './produtos.page.html',
@@ -9,7 +12,12 @@ import { getStorage, ref, listAll, Storage, getDownloadURL } from '@angular/fire
 export class ProdutosPage implements OnInit {
   darkMode = false;
   produtos:any = []
-  constructor(private storage:Storage, private firestore:Firestore) { }
+  constructor(private storage:Storage, private firestore:Firestore, private navCtrl: NavController) { }
+
+  goToProfilePage() {
+    this.navCtrl.navigateForward('/carrinho'); // Substitua pelo caminho real do seu perfil
+  }
+
   ngOnInit() {
     this.listarBanco()
   }
