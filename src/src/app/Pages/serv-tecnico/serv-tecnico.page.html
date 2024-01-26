@@ -1,0 +1,67 @@
+
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Serviço Técnico</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content [fullscreen]="true">
+
+  <ion-item>
+    <ion-label>Categoria de Pesquisa</ion-label>
+    <ion-select [(ngModel)]="searchCategory" (ionChange)="filterItems()">
+      <ion-select-option value="all">Todas</ion-select-option>
+      <ion-select-option value="montagem">Manutenção de Computadores</ion-select-option>
+      <ion-select-option value="instalação">Instalação de cabo de internet</ion-select-option>
+      <ion-select-option value="hardware">Manutenção e reparo de hardwares</ion-select-option>
+      <ion-select-option value="above3stars">Avaliação acima de 4 estrelas</ion-select-option>
+      <ion-select-option value="below3stars">Avaliação abaixo de 4 estrelas</ion-select-option>
+    </ion-select>
+  </ion-item>
+
+  <ion-card *ngFor="let tecnico of searchResults">
+    <img alt="Silhouette of mountains" src="https://ionicframework.com/docs/img/demos/card-media.png" />
+    <ion-card-header>
+      <ion-card-title>{{ tecnico.nome }} - {{ tecnico.profissao }}</ion-card-title>
+      <ion-card-subtitle>
+        <ion-icon *ngFor="let i of getStars(tecnico.avaliacao)" name="star"></ion-icon>
+        {{ tecnico.avaliacao.toFixed(1) }} 
+      </ion-card-subtitle>
+    </ion-card-header>
+
+    <ion-card-content>
+      Descrição - {{ tecnico.descricao }}<br><br><br>
+      Dias de atendimento - {{ tecnico.diasAtendimento }}<br>
+      Horario de atendimento - {{ tecnico.horarioAtendimento }} <br>
+      Custo do serviço - {{ tecnico.custoServico }}
+    </ion-card-content>
+
+    <ion-button id={{tecnico.nome}} style="width: 100%;">Contratar</ion-button>
+    <ion-modal id="example-modal" #modal trigger={{tecnico.nome}}>
+      <ng-template>
+        <div class="wrapper">
+
+          <ion-list lines="none" style="width: 80%; margin-left: 42px">
+            <ion-item button="true" detail="false">
+              <ion-icon name="person-circle"></ion-icon><h2 style="margin-top: 10px;">Descreva o problema</h2>
+              <textarea style="width: 100%; height: 100px;"></textarea>
+            </ion-item>
+            <ion-item button="true" detail="false" (click)="modal.dismiss()">
+              <ion-button style="width: 100%;">Contratar</ion-button>
+            </ion-item>
+            <ion-item button="true" detail="false" (click)="modal.dismiss()">
+              <ion-button style="width: 100%;">Fechar</ion-button>
+            </ion-item>
+
+          </ion-list>
+        </div>
+      </ng-template>
+    </ion-modal>
+    
+  </ion-card>
+
+</ion-content>

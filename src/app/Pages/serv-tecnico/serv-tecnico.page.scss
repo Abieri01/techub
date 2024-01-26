@@ -43,12 +43,15 @@
   
       ion-button {
         margin-top: 16px;
-        background-color: #007bff;
-        color: #fff;
+        background-color: #FF6F00;
+        color: #FF6F00;
+        border-color: #FF6F00;
+        border: #FF6F00;
+        border-radius: 15px;
         width: 100%;
   
         &:hover {
-          background-color: #0056b3;
+          background-color: #FF6F00;
         }
       }
   

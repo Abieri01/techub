@@ -40,15 +40,28 @@
       Custo do serviço - {{ tecnico.custoServico }}
     </ion-card-content>
 
-    <ion-button (click)="setOpen(true)" style="width: 100%;">Contratar</ion-button>
-    <ion-alert
-      [isOpen]="isAlertOpen"
-      header="Olá, após o pedido ter sido feito o técnico deverá chegar em até 1 hora. "
-      subHeader=""
-      message= ""
-      [buttons]="alertButtons"
-      (didDismiss)="setOpen(false)"
-    ></ion-alert>
+    <ion-button id={{tecnico.nome}} style="width: 90%; margin-left: 18px;">Contratar</ion-button>
+    <ion-modal id="example-modal" #modal trigger={{tecnico.nome}}>
+      <ng-template>
+        <div class="wrapper">
+
+          <ion-list lines="none" style="width: 80%; margin-left: 42px">
+            <ion-item button="true" detail="false">
+              <ion-icon name="person-circle"></ion-icon><h2 style="margin-top: 10px;">Descreva o problema</h2>
+              <textarea style="width: 100%; height: 100px;"></textarea>
+            </ion-item>
+            <ion-item button="true" detail="false" (click)="modal.dismiss()">
+              <ion-button style="width: 100%;">Contratar</ion-button>
+            </ion-item>
+            <ion-item button="true" detail="false" (click)="modal.dismiss()">
+              <ion-button style="width: 100%;">Fechar</ion-button>
+            </ion-item>
+
+          </ion-list>
+        </div>
+      </ng-template>
+    </ion-modal>
+    
   </ion-card>
 
 </ion-content>
