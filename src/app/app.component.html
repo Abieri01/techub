@@ -1,3 +1,4 @@
+
 <ion-app>
   <ion-split-pane contentId="main-content">
     <ion-menu contentId="main-content" type="overlay">
@@ -35,7 +36,40 @@
         </ion-list>
       </ion-content>
     </ion-menu>
+
+    <ion-tabs>
+
+      <ion-tab-bar color="light" slot="bottom">
+        <ion-tab-button tab="produtos" href="/produtos">
+          <ion-icon aria-hidden="true" name="bag-handle-sharp"></ion-icon>
+          <ion-label style="font-weight: bold;">Produtos</ion-label>
+        </ion-tab-button>
     
+        <ion-tab-button tab="carrinho" href="/carrinho">
+          <ion-icon aria-hidden="true" name="cart-sharp"></ion-icon>
+          <ion-label style="font-weight: bold;">Carrinho</ion-label>
+        </ion-tab-button>
+    
+        <ion-tab-button tab="perfil" href="/perfil">
+          <img class="rounded-logo" src="../assets/logos/logo.png" alt="Logo" style="max-width: 200%; height: auto;">
+          <ion-label style="font-weight: bold;"></ion-label>
+        </ion-tab-button>
+        
+    
+          <ion-tab-button tab="serv-tecnico" href="/serv-tecnico">
+            <ion-icon aria-hidden="true" name="construct-sharp"></ion-icon>
+            <ion-label style="font-weight: bold;">Técnicos</ion-label>
+          </ion-tab-button>
+    
+           <ion-tab-button tab="folder/home" href="/folder/home">
+            <ion-icon aria-hidden="true" name="person-sharp"></ion-icon>
+            <ion-label style="font-weight: bold;">Eu</ion-label>
+          </ion-tab-button>
+        
+      </ion-tab-bar>
+    
+    </ion-tabs>
+ 
     <ion-toast [isOpen]="isToastOpen" message={{mensagem}} [duration]="5000" (didDismiss)="setOpen(false)"></ion-toast>
 
     <ion-router-outlet id="main-content"></ion-router-outlet>
