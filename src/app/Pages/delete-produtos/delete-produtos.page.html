@@ -1,6 +1,10 @@
-<ion-buttons slot="start">
-  <ion-menu-button></ion-menu-button>
-</ion-buttons><ion-content>
+<ion-toolbar>
+  <ion-buttons slot="start">
+    <ion-menu-button></ion-menu-button>
+  </ion-buttons>
+  <ion-icon name="cart-sharp" slot="end" style="width: 100%;"></ion-icon>
+</ion-toolbar>
+<ion-content>
   <ion-card>
     <ion-card-header>
       <ion-card-title>Deletar Produtos</ion-card-title>
@@ -10,7 +14,7 @@
       <ion-list>
         <ion-item *ngFor="let p of produtos">
           <ion-thumbnail slot="start">
-            <img src={{p.image}} />
+            <img src={{p.image}}/>
           </ion-thumbnail>
           <ion-label class="nome">{{p.nome}}</ion-label>
           <ion-label>{{p.preco}}</ion-label>

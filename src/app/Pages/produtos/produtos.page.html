@@ -1,16 +1,40 @@
-<ion-buttons slot="start">
-  <ion-menu-button></ion-menu-button>
-</ion-buttons>
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+      <ion-button (click)="goToProfilePage()">
+        <ion-icon name="cart"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
 <ion-content>
+  <ion-item>
+    <ion-label>Categoria de Pesquisa</ion-label>
+    <ion-select [(ngModel)]="searchCategory" (ionChange)="filterItems()">
+      <ion-select-option value="all">Todas</ion-select-option>
+      <ion-select-option value="marca">Marca</ion-select-option>
+      <ion-select-option value="tipoHardware">Tipo de Hardware</ion-select-option>
+      <ion-select-option value="precoAbove">Preço Acima</ion-select-option>
+      <ion-select-option value="precoBelow">Preço Abaixo</ion-select-option>
+      <ion-select-option value="above3stars">Avaliação acima de 4 estrelas</ion-select-option>
+      <ion-select-option value="below3stars">Avaliação abaixo de 4 estrelas</ion-select-option>
+    </ion-select>
+  </ion-item>
+
   <h1>Produtos</h1>
-  <ion-card *ngFor="let p of produtos">
-    <img src={{p.image}}/>
+  <ion-card *ngFor="let p of produtosFiltrados">
+    <img [src]="p.image" />
     <ion-card-header>
-      <ion-card-title><div class="pcort">R$ {{p.preco.replace('.',',')}}</div><div class="desconto"> -30% R$ {{((p.preco-(p.preco*0.3)).toFixed(2)).replace('.',',')}}</div></ion-card-title>
-      <ion-card-subtitle>{{p.nome}}</ion-card-subtitle>
+      <ion-card-title>
+        <div class="pcort">{{ p.preco.replace('.', ',') }}</div>
+      </ion-card-title>
+      <ion-card-subtitle>{{ p.nome }}</ion-card-subtitle>
     </ion-card-header>
     <ion-card-content>
-      {{p.descricao}}
+      {{ p.descricao }}
     </ion-card-content>
+    <ion-button (click)="comprar(p)">Comprar</ion-button>
   </ion-card>
 </ion-content>

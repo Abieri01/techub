@@ -24,7 +24,7 @@ export class EditProdutosPage implements OnInit {
     descricao:'',
     preco:'',
     qtd:'',
-    image:''
+    image:'',
   }
   constructor(private storage: Storage, private firestore: Firestore) { }
   ngOnInit() {
@@ -67,7 +67,9 @@ export class EditProdutosPage implements OnInit {
 
   }
 
-  EditarProduto() {
+  
+
+  EditarProduto(isOpen: boolean) {
     console.log('produto Editado')
     const produto = {
       nome:this.produto.nome,
@@ -77,7 +79,9 @@ export class EditProdutosPage implements OnInit {
       image:this.produto.image
     }
     const document = doc(collection(this.firestore, 'Produtos'),this.produto.id);
+    this.mensagem(isOpen)
     return updateDoc(document, produto);
+   
   }
   selectImage(img: any, modal: any) {
     this.imgSrc = img
