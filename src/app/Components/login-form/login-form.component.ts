@@ -91,6 +91,20 @@ export class LoginFormComponent implements OnInit {
   logOutComGoogle(){
     return signOut(this.auth)
   }
+
+  public alertButtons = [
+    {
+      text: 'Não',
+      cssClass: 'alert-button-cancel',
+    },
+    {
+      text: 'Sim',
+      cssClass: 'alert-button-confirm',
+    },
+    
+  ];
+  
+
   constructor(private auth: Auth, private navCtrl: NavController) { }
 
   ngOnInit() { }
