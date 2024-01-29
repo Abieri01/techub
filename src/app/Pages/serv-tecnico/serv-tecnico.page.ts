@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { NavController } from '@ionic/angular';
+import { NavController, ToastController } from '@ionic/angular';
 
 @Component({
   selector: 'app-serv-tecnico',
@@ -68,7 +68,7 @@ export class ServTecnicoPage implements OnInit {
   ];
   searchResults: any[] = [];
 
-  constructor(private navCtrl: NavController) {}
+  constructor(private navCtrl: NavController, private toastController: ToastController) {}
 
   isModalOpen = false;
 
@@ -80,7 +80,6 @@ export class ServTecnicoPage implements OnInit {
     this.checkAppMode();
     this.filterItems();
   }
-
 
   checkAppMode() {
     const checkIsDarkMode = localStorage.getItem('darkModeActivated');
@@ -120,6 +119,29 @@ export class ServTecnicoPage implements OnInit {
     }
   }
 
+  async fazerPedido() {
+    // Seu código lógico para lidar com a ação "fazer pedido" vai aqui
+
+    // Depois de lidar com a ação, mostrar a notificação
+    await this.presentToast();
+  }
+
+  async presentToast() {
+    const toast = await this.toastController.create({
+      message: 'Pedido foi realizado!',
+      duration: 2000, // 2 segundos
+      position: 'bottom',
+      color: 'success',
+      buttons: [
+        {
+          text: 'Fechar',
+          role: 'cancel',
+        },
+      ],
+    });
+    await toast.present();
+  }
+
   getStars(aval: number): string[] {
     const stars = [];
     for (let i = 1; i <= 5; i++) {
@@ -127,5 +149,4 @@ export class ServTecnicoPage implements OnInit {
     }
     return stars;
   }
-
 }
