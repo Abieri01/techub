@@ -4,21 +4,21 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { FolderPageRoutingModule } from './folder-routing.module';
+import { PerfilPageRoutingModule } from './perfil-routing.module';
 
-import { FolderPage } from './folder.page';
-import { LoginFormComponent } from '../Components/login-form/login-form.component';
+import { PerfilPage } from './perfil.page';
 import { register } from 'swiper/element/bundle';
 
-register(); 
+register();
+
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    FolderPageRoutingModule
+    PerfilPageRoutingModule
   ],
-  declarations: [FolderPage, LoginFormComponent],
+  declarations: [PerfilPage],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
-export class FolderPageModule {}
+export class PerfilPageModule {}

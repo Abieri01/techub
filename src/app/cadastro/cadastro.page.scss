@@ -1,0 +1,49 @@
+/* cadastro.page.scss */
+
+ion-content {
+    --ion-background-color: #f4f4f4; /* Cor de fundo da página */
+  }
+  
+  form {
+    max-width: 400px;
+    margin: auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  h1 {
+    text-align: center;
+    color: #333;
+  }
+  
+  ion-input {
+    margin-bottom: 15px;
+  }
+  
+  ion-button {
+    margin-top: 20px;
+  }
+  
+  p {
+    text-align: center;
+    margin-top: 10px;
+    font-size: 14px;
+  }
+  
+  a {
+    color: #4285f4;
+    cursor: pointer;
+  }
+  
+  a:hover {
+    text-decoration: underline;
+  }
+  
+  /* Adicione estilos específicos para o toast se necessário */
+  ion-toast {
+    --ion-background-color: #333;
+    --ion-color: #fff;
+  }
+  

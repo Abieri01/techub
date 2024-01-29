@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Auth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signInWithPopup, GoogleAuthProvider, signOut } from '@angular/fire/auth';
-import { AngularFirestore, addDoc, collection } from '@angular/fire/firestore';
 import { NavController } from '@ionic/angular';
-
 
 @Component({
   selector: 'app-login-form',
@@ -10,7 +8,6 @@ import { NavController } from '@ionic/angular';
   styleUrls: ['./login-form.component.scss'],
 })
 export class LoginFormComponent implements OnInit {
-  uid: string = '';
   cad: boolean = false;
   cadPessoal: boolean = false; // Added flag for personal information form
   mensagem: string = '';
@@ -31,7 +28,6 @@ export class LoginFormComponent implements OnInit {
   bairro: string = '';
   cidade: string = '';
   estado: string = '';
-  
 
   setOpen(isOpen: boolean) {
     this.isToastOpen = isOpen;
@@ -50,28 +46,24 @@ export class LoginFormComponent implements OnInit {
       this.cad = !this.cad
 
       createUserWithEmailAndPassword(this.auth, email, senha)
-    .then((userCredential) => {
-      const user = userCredential.user;
+        .then((userCredential) => {
+          // Signed up 
+          const user = userCredential.user;
+          // ...
+          // Adicione a mensagem de sucesso
+        this.mensagem = 'Cadastro realizado com sucesso!';
+        this.setOpen(true);
 
-      // Obtendo a UID do usuário cadastrado
-      const uid = user.uid;
+        // Navegue para a página /perfil após o cadastro bem-sucedido
+        this.navCtrl.navigateForward('/cadastro');
+      })
+        .catch((error) => {
+          const errorCode = error.code;
+          const errorMessage = error.message;
+          // ..
+        });
+    }
 
-      // Adicione a mensagem de sucesso
-      this.mensagem = 'Cadastro realizado com sucesso!';
-      this.setOpen(true);
-
-      // Armazene a UID para uso posterior
-      this.uid = uid;
-
-      // Navegue para a página /cadastro após o cadastro bem-sucedido
-      this.navCtrl.navigateForward('/cadastro');
-    })
-    .catch((error) => {
-      const errorCode = error.code;
-      const errorMessage = error.message;
-      // ..
-    });
-  }
   }
 
   Logar(email: any, senha: any) {
@@ -134,40 +126,14 @@ export class LoginFormComponent implements OnInit {
       cidade: this.cidade,
       estado: this.estado,
     });
-    // Função para salvar no Firestore
-  const salvarNoFirestore = async () => {
-    try {
-      const docRef = await addDoc(collection(this.firestore, 'usuarios'), {
-        uid: this.uid,
-        nome: this.nome,
-        sobrenome: this.sobrenome,
-        sexo: this.sexo,
-        cpf: this.cpf,
-        nascimento: this.nascimento,
-        telefone: this.telefone,
-        cep: this.cep,
-        rua: this.rua,
-        numero: this.numero,
-        complemento: this.complemento,
-        referencia: this.referencia,
-        bairro: this.bairro,
-        cidade: this.cidade,
-        estado: this.estado,
-        // Adicione mais campos conforme necessário
-      });
-
-      console.log('Documento salvo com ID: ', docRef.id);
-    } catch (e) {
-      console.error('Erro ao salvar no Firestore: ', e);
-    }
-  };
-
-  // Chame a função de salvar no Firestore
-  salvarNoFirestore();
-
   }
 
-  constructor(private auth: Auth, private firestore: AngularFirestore, private navCtrl: NavController) { }
+  constructor(private auth: Auth, private navCtrl: NavController) { }
 
   ngOnInit() { }
 }
+
+
+
+
+
