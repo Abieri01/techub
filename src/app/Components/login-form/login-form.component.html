@@ -1,4 +1,5 @@
-<div *ngIf="logado">
+
+<div *ngIf="logado" class="perfillogado">
   
   <ion-item [button]="false" lines="full" class="icon">
     <ion-avatar aria-hidden="true" slot="start">
@@ -44,10 +45,12 @@
   </ion-item>
 
 
-  <ion-button  id="present-alert">LogOut</ion-button>
+  <ion-button  id="present-alert" style="width: 90%; margin-left: 18px;" color="dark" class="custom-button" >LogOut</ion-button>
+ 
   <ion-alert trigger="present-alert" class="custom-alert" header="Deseja sair?" [buttons]="alertButtons"></ion-alert>
 </div>
-<form *ngIf="!cad && !logado">
+<div id="container">
+<form *ngIf="!cad && !logado" >
   <h1>Formulário de Login</h1>
   <ion-input label-placement="floating" label="email" fill="outline" placeholder="insira seu email" #email></ion-input>
   <ion-input label="senha" type="password" label-placement="floating" fill="outline" placeholder="insira sua senha"
@@ -61,7 +64,7 @@
   <ion-button fill="outline" expand="block" (click)="loginComGoogle()"><ion-thumbnail><img
         src="../../../assets/logos/googleLogo.png"></ion-thumbnail>Login com google</ion-button>
 </form>
-
+</div>
 <form *ngIf="cad">
   <h1>Formulário de Cadastro</h1>
   <ion-input label="email" label-placement="floating" fill="outline" placeholder="insira seu email" #email></ion-input>

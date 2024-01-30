@@ -72,7 +72,10 @@ export class ProdutosPage implements OnInit {
     }
   }
 
-  comprar(produto: any) {
-    // Adicione a lógica para comprar o produto
+  compras:number=0
+  comprar(produto: any){
+    this.compras++
   }
+
+  
 }

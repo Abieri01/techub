@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Auth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signInWithPopup, GoogleAuthProvider, signOut } from '@angular/fire/auth';
 import { Firestore, addDoc, collection } from '@angular/fire/firestore';
 import { NavController } from '@ionic/angular';
+import { AlertController } from '@ionic/angular';
 
 @Component({
   selector: 'app-login-form',
@@ -120,20 +121,21 @@ export class LoginFormComponent implements OnInit {
     {
       text: 'Não',
       cssClass: 'alert-button-cancel',
+      handler: () => {
+      },
     },
     {
       text: 'Sim',
       cssClass: 'alert-button-confirm',
+      handler: () => {
+        this.logout();
     },
-    
+  }
   ];
+
   
-
-  constructor(private auth: Auth, private navCtrl: NavController) { }
-
-
- 
-
+  
+  
   constructor(private auth: Auth, private firestore: Firestore, private navCtrl: NavController) { }
 
   ngOnInit() { }
