@@ -5,7 +5,7 @@
 </ion-toolbar>
 
 <ion-content>
-  <h1>Cadastro Pessoal</h1>
+  <h1>Cadastro Tecnicos Parceiros</h1>
 
   <ion-item>
     <ion-label position="floating">Nome</ion-label>
@@ -39,11 +39,7 @@
     <ion-label position="floating">Telefone</ion-label>
     <ion-input name="telefone" type="tel" required #telefone></ion-input>
   </ion-item>
-
-
-   <h1>Endereço para Entrega</h1>
   
-
   <ion-item>
     <ion-label position="floating">CEP</ion-label>
     <ion-input name="cep" type="text" required #cep></ion-input>
@@ -84,5 +80,5 @@
     <ion-input name="estado" type="text" required #estado></ion-input>
   </ion-item>
 
-  <ion-button expand="full" (click)="cadastrarPessoal(nome.value, sobrenome.value,sexo.value, cpf.value, nascimento.value, telefone.value , cep.value ,  rua.value, numero.value, complemento.value ,referencia.value, bairro.value, cidade.value, estado.value)">Cadastrar</ion-button>
+  <ion-button expand="full" (click)="cadtec(nome.value, sobrenome.value,sexo.value, cpf.value, nascimento.value, telefone.value , cep.value ,  rua.value, numero.value, complemento.value ,referencia.value, bairro.value, cidade.value, estado.value)">Cadastrar</ion-button>
 </ion-content>

@@ -43,6 +43,10 @@ const routes: Routes = [
   { 
     path: 'cadastro', 
     loadChildren: () => import('./Pages/cadastro/cadastro.module').then(m => m.CadastroPageModule) 
+  },
+  {
+    path: 'cadtec',
+    loadChildren: () => import('./Pages/cadtec/cadtec.module').then( m => m.CadtecPageModule)
   }
 ];
 

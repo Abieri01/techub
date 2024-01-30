@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { Auth } from '@angular/fire/auth';
+import { addDoc, collection, Firestore } from '@angular/fire/firestore';
 import { NavController, ToastController } from '@ionic/angular';
 
 @Component({
@@ -7,39 +9,31 @@ import { NavController, ToastController } from '@ionic/angular';
   styleUrls: ['./cadastro.page.scss'],
 })
 export class CadastroPage {
-  nome: string = '';
-  sobrenome: string = '';
-  sexo: string = '';
-  cpf: string = '';
-  nascimento: string = '';
-  telefone: string = '';
-  cep: string = '';
-  rua: string = '';
-  numero: string = '';
-  complemento: string = '';
-  referencia: string = '';
-  bairro: string = '';
-  cidade: string = '';
-  estado: string = '';
-  mensagem: string = '';
-  constructor(private navCtrl: NavController, private toastController: ToastController) {}
-
-  async cadastrar() {
-    // Adicione aqui a lógica para cadastrar o usuário
-    console.log('Nome:', this.nome);
-    console.log('Sobrenome:', this.sobrenome);
-    console.log('Sexo:', this.sexo);
-    console.log('CPF:', this.cpf);
-    console.log('Nascimento:', this.nascimento);
-    console.log('Telefone:', this.telefone);
-    console.log('CEP:', this.cep);
-    console.log('Rua:', this.rua);
-    console.log('Número:', this.numero);
-    console.log('Complemento:', this.complemento);
-    console.log('Referência:', this.referencia);
-    console.log('Bairro:', this.bairro);
-    console.log('Cidade:', this.cidade);
-    console.log('Estado:', this.estado);
+ 
+  
+  
+constructor(private auth: Auth, private firestore: Firestore, private navCtrl: NavController, private toastController: ToastController) { }
+ 
+async cadastrarPessoal(nome: any, sobrenome: any, sexo: any, cpf: any, nascimento: any, telefone: any, cep: any, rua: any, numero: any, complemento: any, referencia: any, bairro: any, cidade: any, estado: any) {
+    const docRef = await addDoc(collection(this.firestore, 'usuarios'), {
+        uid: sessionStorage.getItem('uid'),
+        email: sessionStorage.getItem('email'),
+        nome: nome,
+        sobrenome: sobrenome,
+        sexo: sexo,
+        cpf: cpf,
+        nascimento: nascimento,
+        telefone: telefone,
+        cep: cep,
+        rua: rua,
+        numero: numero,
+        complemento: complemento,
+        referencia: referencia,
+        bairro: bairro,
+        cidade: cidade,
+        estado: estado,
+      });
+      console.log('Documento salvo com ID: ', docRef.id);
     // Implemente a lógica de cadastro, como enviar para um servidor ou salvar localmente.
     const toast = await this.toastController.create({
       message: 'Cadastro realizado com sucesso!',
@@ -51,5 +45,5 @@ export class CadastroPage {
     // Redirecionar para a página /perfil
     this.navCtrl.navigateForward('/perfil');
   }
-  
+
 }

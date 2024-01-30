@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Auth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signInWithPopup, GoogleAuthProvider, signOut } from '@angular/fire/auth';
-import { AngularFirestore, addDoc, collection } from '@angular/fire/firestore';
+import { Firestore, addDoc, collection } from '@angular/fire/firestore';
 import { NavController } from '@ionic/angular';
-
 
 @Component({
   selector: 'app-login-form',
@@ -10,14 +9,16 @@ import { NavController } from '@ionic/angular';
   styleUrls: ['./login-form.component.scss'],
 })
 export class LoginFormComponent implements OnInit {
+  email: string = '';
   uid: string = '';
+  /* cadt: boolean = false; */
   cad: boolean = false;
-  cadPessoal: boolean = false; // Added flag for personal information form
+  cadPessoal: boolean = false;
   mensagem: string = '';
   logado: boolean = false;
   isToastOpen = false;
   user: any = { nome: '', foto: '' };
-  nome: string = ''; // Added properties for personal information
+  nome: string = '';
   sobrenome: string = '';
   sexo: string = '';
   cpf: string = '';
@@ -31,143 +32,155 @@ export class LoginFormComponent implements OnInit {
   bairro: string = '';
   cidade: string = '';
   estado: string = '';
-  
 
   setOpen(isOpen: boolean) {
     this.isToastOpen = isOpen;
   }
+
   cadUser(email: any, senha: any, rpSenha: any) {
-    this.mensagem = ''
+    this.mensagem = '';
     if (email == '' || senha == '' || rpSenha == '') {
-      this.mensagem = 'Preencha todos os campos do formulário!'
-      this.setOpen(true)
-    } else if (senha != rpSenha) {
-      this.mensagem = 'As senhas precisam ser iguas!'
-      this.setOpen(true)
-    } else {
-      this.mensagem = 'Usuário cadastrado com sucesso!'
-      this.setOpen(true)
-      this.cad = !this.cad
-
-      createUserWithEmailAndPassword(this.auth, email, senha)
-    .then((userCredential) => {
-      const user = userCredential.user;
-
-      // Obtendo a UID do usuário cadastrado
-      const uid = user.uid;
-
-      // Adicione a mensagem de sucesso
-      this.mensagem = 'Cadastro realizado com sucesso!';
+      this.mensagem = 'Preencha todos os campos do formulário!';
       this.setOpen(true);
-
-      // Armazene a UID para uso posterior
-      this.uid = uid;
-
-      // Navegue para a página /cadastro após o cadastro bem-sucedido
-      this.navCtrl.navigateForward('/cadastro');
-    })
-    .catch((error) => {
-      const errorCode = error.code;
-      const errorMessage = error.message;
-      // ..
-    });
+    } else if (senha != rpSenha) {
+      this.mensagem = 'As senhas precisam ser iguais!';
+      this.setOpen(true);
+    } else {
+      this.mensagem = 'Usuário cadastrado com sucesso!';
+      this.setOpen(true);
+      this.cad = !this.cad;
+      createUserWithEmailAndPassword(this.auth, email, senha)
+        .then((userCredential) => {
+          console.log('test1')
+          const user = userCredential.user;
+          sessionStorage.setItem('email', email);
+          sessionStorage.setItem('uid', user.uid);
+          this.uid = user.uid;
+          this.email = email
+          this.mensagem = 'Cadastro realizado com sucesso!';
+          this.setOpen(true);
+          this.navCtrl.navigateForward('/cadastro'); 
+          //this.salvarNoFirestore();  // Chame a função de salvar no Firestore
+        })
+        .catch((error) => {
+          const errorCode = error.code;
+          const errorMessage = error.message;
+          console.error('Erro ao cadastrar: ', errorMessage);
+        });
+    }
   }
-  }
 
+  /* cadT(email: any, senha: any, rpSenha: any) {
+    this.mensagem = '';
+    if (email == '' || senha == '' || rpSenha == '') {
+      this.mensagem = 'Preencha todos os campos do formulário!';
+      this.setOpen(true);
+    } else if (senha != rpSenha) {
+      this.mensagem = 'As senhas precisam ser iguais!';
+      this.setOpen(true);
+    } else {
+      this.mensagem = 'Usuário cadastrado com sucesso!';
+      this.setOpen(true);
+      this.cadt = !this.cadt;
+      createUserWithEmailAndPassword(this.auth, email, senha)
+        .then((userCredential) => {
+          console.log('test2')
+          const user = userCredential.user;
+          sessionStorage.setItem('email', email);
+          sessionStorage.setItem('uid', user.uid);
+          this.uid = user.uid;
+          this.email = email
+          this.mensagem = 'Cadastro realizado com sucesso!';
+          this.setOpen(true);
+          this.navCtrl.navigateForward('/cadastro'); 
+          //this.salvarNoFirestore();  // Chame a função de salvar no Firestore
+        })
+        .catch((error) => {
+          const errorCode = error.code;
+          const errorMessage = error.message;
+          console.error('Erro ao cadastrar: ', errorMessage);
+        });
+    }
+  } */
   Logar(email: any, senha: any) {
     signInWithEmailAndPassword(this.auth, email, senha)
       .then((userCredential) => {
         const user = userCredential.user;
-        console.log(user.email)
-        this.mensagem = `Usuário: ${user.email} logado com sucesso!`
-        this.setOpen(true)
-        this.logado = !this.logado
+        console.log(user.email);
+        this.mensagem = `Usuário: ${user.email} logado com sucesso!`;
+        this.setOpen(true);
+        this.logado = !this.logado;
       })
       .catch((error) => {
         const errorCode = error.code;
         const errorMessage = error.message;
+        console.error('Erro ao logar: ', errorMessage);
       });
   }
 
   logout() {
-    this.mensagem = 'LogOut efetuado com sucesso!'
-    this.setOpen(true)
-    this.logado = !this.logado
-    this.logOutComGoogle()
+    this.mensagem = 'LogOut efetuado com sucesso!';
+    this.setOpen(true);
+    this.logado = !this.logado;
+    this.logOutComGoogle();
   }
+
   loginComGoogle() {
-    const provider = new GoogleAuthProvider()
+    const provider = new GoogleAuthProvider();
     signInWithPopup(this.auth, provider)
       .then((result) => {
         const credential = GoogleAuthProvider.credentialFromResult(result);
-        this.mensagem = `Usuário: ${result.user.displayName} logado com sucesso!`
-        this.user.nome=result.user.displayName
-        this.user.foto=result.user.photoURL
-        this.setOpen(true)
-        this.logado = !this.logado
-      }).catch((error) => {
+        this.mensagem = `Usuário: ${result.user.displayName} logado com sucesso!`;
+        this.user.nome = result.user.displayName;
+        this.user.foto = result.user.photoURL;
+        this.setOpen(true);
+        this.logado = !this.logado;
+      })
+      .catch((error) => {
         const errorCode = error.code;
         const errorMessage = error.message;
         const email = error.customData.email;
         const credential = GoogleAuthProvider.credentialFromError(error);
+        console.error('Erro ao logar com Google: ', errorMessage);
       });
   }
-  logOutComGoogle(){
-    return signOut(this.auth)
+  logOutComGoogle() {
+    return signOut(this.auth);
   }
+  // async cadastrarPessoal(nome: any, sobrenome: any, sexo: any, cpf: any, nascimento: any, telefone: any, cep: any, rua: any, numero: any, complemento: any, referencia: any, bairro: any, cidade: any, estado: any) {
+  //   try {
+  //     const docRef = await addDoc(collection(this.firestore, 'usuarios'), {
+  //       uid: this.uid,
+  //       email: this.email,
+  //       nome: nome,
+  //       sobrenome: sobrenome,
+  //       sexo: sexo,
+  //       cpf: cpf,
+  //       nascimento: nascimento,
+  //       telefone: telefone,
+  //       cep: cep,
+  //       rua: rua,
+  //       numero: numero,
+  //       complemento: complemento,
+  //       referencia: referencia,
+  //       bairro: bairro,
+  //       cidade: cidade,
+  //       estado: estado,
+  //     });
 
+  //     console.log('Documento salvo com ID: ', docRef.id);
+  //   } catch (e) {
+  //     console.error('Erro ao salvar no Firestore: ', e);
+  //   }
 
-  cadastrarPessoal() {
-    console.log('Personal information submitted:', {
-      nome: this.nome,
-      sobrenome: this.sobrenome,
-      sexo: this.sexo,
-      cpf: this.cpf,
-      nascimento: this.nascimento,
-      telefone: this.telefone,
-      cep: this.cep,
-      rua: this.rua,
-      numero: this.numero,
-      complemento: this.complemento,
-      referencia: this.referencia,
-      bairro: this.bairro,
-      cidade: this.cidade,
-      estado: this.estado,
-    });
-    // Função para salvar no Firestore
-  const salvarNoFirestore = async () => {
-    try {
-      const docRef = await addDoc(collection(this.firestore, 'usuarios'), {
-        uid: this.uid,
-        nome: this.nome,
-        sobrenome: this.sobrenome,
-        sexo: this.sexo,
-        cpf: this.cpf,
-        nascimento: this.nascimento,
-        telefone: this.telefone,
-        cep: this.cep,
-        rua: this.rua,
-        numero: this.numero,
-        complemento: this.complemento,
-        referencia: this.referencia,
-        bairro: this.bairro,
-        cidade: this.cidade,
-        estado: this.estado,
-        // Adicione mais campos conforme necessário
-      });
+  //   this.salvarNoFirestore();  // Chame a função de salvar no Firestore
+  // }
 
-      console.log('Documento salvo com ID: ', docRef.id);
-    } catch (e) {
-      console.error('Erro ao salvar no Firestore: ', e);
-    }
-  };
+  // async salvarNoFirestore() {
 
-  // Chame a função de salvar no Firestore
-  salvarNoFirestore();
+  // }
 
-  }
-
-  constructor(private auth: Auth, private firestore: AngularFirestore, private navCtrl: NavController) { }
+  constructor(private auth: Auth, private firestore: Firestore, private navCtrl: NavController) { }
 
   ngOnInit() { }
 }
