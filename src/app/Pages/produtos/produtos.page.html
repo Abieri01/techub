@@ -1,13 +1,21 @@
+
 <ion-header>
   <ion-toolbar>
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
-      <ion-title>Produtos</ion-title>
-      <ion-button (click)="goToProfilePage()">
-      </ion-button>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
+
+<ion-fab slot="fixed" vertical="bottom" horizontal="end">
+ 
+  <ion-fab-button>
+    <ion-icon name="cart"></ion-icon>
+    <ion-badge color="danger">{{compras}}</ion-badge>
+  </ion-fab-button>
+</ion-fab>
+
+
 
 <ion-content>
   <ion-item>
