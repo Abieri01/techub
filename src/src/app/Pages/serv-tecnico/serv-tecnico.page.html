@@ -1,0 +1,76 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Serviço Técnico</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+
+  <ion-item>
+    <ion-label>Categoria de Pesquisa</ion-label>
+    <ion-select [(ngModel)]="searchCategory" (ionChange)="filterItems()">
+      <ion-select-option value="all">Todas</ion-select-option>
+      <ion-select-option value="montagem">Manutenção de Computadores</ion-select-option>
+      <ion-select-option value="instalação">Instalação de cabo de internet</ion-select-option>
+      <ion-select-option value="hardware">Manutenção e reparo de hardwares</ion-select-option>
+      <ion-select-option value="above3stars">Avaliação acima de 4 estrelas</ion-select-option>
+      <ion-select-option value="below3stars">Avaliação abaixo de 4 estrelas</ion-select-option>
+    </ion-select>
+  </ion-item>
+
+  <ion-card *ngFor="let tecnico of searchResults">
+    <div class="rounded-image">
+      <img alt="Silhouette of mountains" src="https://ionicframework.com/docs/img/demos/card-media.png" />
+    </div>
+    <ion-card-header>
+      <ion-card-title>{{ tecnico.nome }} - {{ tecnico.profissao }}</ion-card-title>
+      <ion-card-subtitle>
+        <ion-icon *ngFor="let i of getStars(tecnico.avaliacao)" name="star"></ion-icon>
+        {{ tecnico.avaliacao.toFixed(1) }}
+      </ion-card-subtitle>
+    </ion-card-header>
+
+    <ion-card-content>
+      Descrição - {{ tecnico.descricao }}<br><br><br>
+      Dias de atendimento - {{ tecnico.diasAtendimento }}<br>
+      Horário de atendimento - {{ tecnico.horarioAtendimento }} <br>
+      Custo do serviço - {{ tecnico.custoServico }}
+    </ion-card-content>
+
+    <ion-button id="{{tecnico.nome}}" class="custom-button" style="width: 90%; margin-left: 18px;" color="dark"
+      (click)="contratar(tecnico)">Contratar</ion-button>
+
+    <ion-modal id="example-modal" #modal trigger="{{tecnico.nome}}">
+  <ng-template>
+    <div class="wrapper">
+      <ion-list lines="none" style="width: 80%; margin-left: 42px">
+        <!-- Adicionando ion-datetime para escolher um horário -->
+        <ion-item button="true" detail="false">
+          <ion-icon name="person-circle"></ion-icon>
+          <h2 style="margin-top: 10px;">Descreva o problema</h2>
+          <textarea style="width: 100%; height: 100px; color:black; margin-left: 5px;"></textarea>
+        </ion-item>
+
+        <ion-item button="true" detail="false" style="height: 80%;">
+          <ion-label>Escolha a data e hora</ion-label>
+          <ion-datetime display-format="YYYY-MM-DDTHH:mm" [(ngModel)]="currentDate"></ion-datetime>
+        </ion-item>
+
+        <ion-item button="true" detail="false" (click)="fazerPedido()" class="custom-button">
+          <ion-button style="width: 100%;" color="dark">Fazer pedido</ion-button>
+        </ion-item>
+
+        <ion-item button="true" detail="false" (click)="modal.dismiss()" class="custom-button">
+          <ion-button style="width: 100%;" color="dark">Fechar</ion-button>
+        </ion-item>
+      </ion-list>
+    </div>
+  </ng-template>
+</ion-modal>
+
+  </ion-card>
+
+</ion-content>

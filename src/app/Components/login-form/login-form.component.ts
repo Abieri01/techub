@@ -113,38 +113,26 @@ export class LoginFormComponent implements OnInit {
   logOutComGoogle() {
     return signOut(this.auth);
   }
-  // async cadastrarPessoal(nome: any, sobrenome: any, sexo: any, cpf: any, nascimento: any, telefone: any, cep: any, rua: any, numero: any, complemento: any, referencia: any, bairro: any, cidade: any, estado: any) {
-  //   try {
-  //     const docRef = await addDoc(collection(this.firestore, 'usuarios'), {
-  //       uid: this.uid,
-  //       email: this.email,
-  //       nome: nome,
-  //       sobrenome: sobrenome,
-  //       sexo: sexo,
-  //       cpf: cpf,
-  //       nascimento: nascimento,
-  //       telefone: telefone,
-  //       cep: cep,
-  //       rua: rua,
-  //       numero: numero,
-  //       complemento: complemento,
-  //       referencia: referencia,
-  //       bairro: bairro,
-  //       cidade: cidade,
-  //       estado: estado,
-  //     });
 
-  //     console.log('Documento salvo com ID: ', docRef.id);
-  //   } catch (e) {
-  //     console.error('Erro ao salvar no Firestore: ', e);
-  //   }
 
-  //   this.salvarNoFirestore();  // Chame a função de salvar no Firestore
-  // }
 
-  // async salvarNoFirestore() {
+  public alertButtons = [
+    {
+      text: 'Não',
+      cssClass: 'alert-button-cancel',
+    },
+    {
+      text: 'Sim',
+      cssClass: 'alert-button-confirm',
+    },
+    
+  ];
+  
 
-  // }
+  constructor(private auth: Auth, private navCtrl: NavController) { }
+
+
+ 
 
   constructor(private auth: Auth, private firestore: Firestore, private navCtrl: NavController) { }
 
