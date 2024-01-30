@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { NavController, ToastController } from '@ionic/angular';
+import { collection, Firestore } from '@angular/fire/firestore';
+import { addDoc } from 'firebase/firestore';
+
 
 @Component({
   selector: 'app-serv-tecnico',
@@ -12,6 +15,8 @@ export class ServTecnicoPage implements OnInit {
   alertButtons = ['Fechar'];
   searchTerm: string = '';
   searchCategory: string = 'all';
+  selectedTime: string = '';
+  currentDate: string = new Date().toISOString();
   tecnicos = [
     {
       nome: 'Matheus Abade',
@@ -68,7 +73,7 @@ export class ServTecnicoPage implements OnInit {
   ];
   searchResults: any[] = [];
 
-  constructor(private navCtrl: NavController, private toastController: ToastController) {}
+  constructor(private navCtrl: NavController, private toastController: ToastController, private firestore: Firestore,) {}
 
   isModalOpen = false;
 
@@ -111,20 +116,14 @@ export class ServTecnicoPage implements OnInit {
     });
   }
 
-  contratar(tecnico: any) {
-    // Adicione uma verificação para garantir que a caixa de alerta só seja mostrada uma vez para cada técnico
-    if (!tecnico.hasAlertShown) {
-      tecnico.hasAlertShown = true;
-      this.setOpen(true);
-    }
-  }
-
-  async fazerPedido() {
-    // Seu código lógico para lidar com a ação "fazer pedido" vai aqui
-
-    // Depois de lidar com a ação, mostrar a notificação
+ /* async fazerPedido(descricao: any, data: any, hora: any) {                     Arrumar aqui (cadastro do pedido)
+    const docRef = await addDoc(collection(this.firestore, 'pedidosTec'), {
+      descricao: descricao,
+      data: data,
+      hora: hora
     await this.presentToast();
-  }
+  });
+} */
 
   async presentToast() {
     const toast = await this.toastController.create({

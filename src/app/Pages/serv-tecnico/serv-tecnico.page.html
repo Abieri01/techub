@@ -44,26 +44,33 @@
       (click)="contratar(tecnico)">Contratar</ion-button>
 
     <ion-modal id="example-modal" #modal trigger="{{tecnico.nome}}">
-      <ng-template>
-        <div class="wrapper">
-          <ion-list lines="none" style="width: 80%; margin-left: 42px">
-            <ion-item button="true" detail="false">
-              <ion-icon name="person-circle"></ion-icon>
-              <h2 style="margin-top: 10px;">Descreva o problema</h2>
-              <textarea style="width: 100%; height: 100px;"></textarea>
-            </ion-item>
+  <ng-template>
+    <div class="wrapper">
+      <ion-list lines="none" style="width: 80%; margin-left: 42px">
+        <!-- Adicionando ion-datetime para escolher um horário -->
+        <ion-item button="true" detail="false">
+          <ion-icon name="person-circle"></ion-icon>
+          <h2 style="margin-top: 10px;">Descreva o problema</h2>
+          <textarea style="width: 100%; height: 100px; color:black; margin-left: 5px;"></textarea>
+        </ion-item>
 
-            <ion-item button="true" detail="false" (click)="fazerPedido()" class="custom-button">
-              <ion-button style="width: 100%;" color="dark">Fazer pedido</ion-button>
-            </ion-item>
+        <ion-item button="true" detail="false" style="height: 80%;">
+          <ion-label>Escolha a data e hora</ion-label>
+          <ion-datetime display-format="YYYY-MM-DDTHH:mm" [(ngModel)]="currentDate"></ion-datetime>
+        </ion-item>
 
-            <ion-item button="true" detail="false" (click)="modal.dismiss()" class="custom-button">
-              <ion-button style="width: 100%;" color="dark">Fechar</ion-button>
-            </ion-item>
-          </ion-list>
-        </div>
-      </ng-template>
-    </ion-modal>
+        <ion-item button="true" detail="false" (click)="fazerPedido()" class="custom-button">
+          <ion-button style="width: 100%;" color="dark">Fazer pedido</ion-button>
+        </ion-item>
+
+        <ion-item button="true" detail="false" (click)="modal.dismiss()" class="custom-button">
+          <ion-button style="width: 100%;" color="dark">Fechar</ion-button>
+        </ion-item>
+      </ion-list>
+    </div>
+  </ng-template>
+</ion-modal>
+
   </ion-card>
 
 </ion-content>
