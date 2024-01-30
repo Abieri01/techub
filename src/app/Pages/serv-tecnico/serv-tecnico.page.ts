@@ -116,14 +116,19 @@ export class ServTecnicoPage implements OnInit {
     });
   }
 
- /* async fazerPedido(descricao: any, data: any, hora: any) {                     Arrumar aqui (cadastro do pedido)
+  async fazerPedido(descricao: any, data: any, hora: any) {                   
     const docRef = await addDoc(collection(this.firestore, 'pedidosTec'), {
       descricao: descricao,
       data: data,
-      hora: hora
-    await this.presentToast();
+      hora: hora,
   });
-} */
+  console.log('Salvo no banco de dados');
+  const toast = await this.toastController.create({
+    message: 'Pedido realizado com sucesso!',
+    duration: 3000, 
+  });
+
+} 
 
   async presentToast() {
     const toast = await this.toastController.create({
