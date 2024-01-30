@@ -46,9 +46,25 @@
   <ion-input label="Nome" #nome1 label-placement="floating" fill="outline" placeholder="Insira seu nome" [(ngModel)]="nome"></ion-input>
   <ion-input label="Sobrenome" #sobrenome label-placement="floating" fill="outline" placeholder="Insira seu sobrenome" [(ngModel)]="sobrenome"></ion-input>
   <ion-select [(ngModel)]="sexo" #sexo placeholder="Selecione o sexo">
+  <ion-input label="Nome" #nome1 label-placement="floating" fill="outline" placeholder="Insira seu nome" [(ngModel)]="nome"></ion-input>
+  <ion-input label="Sobrenome" #sobrenome label-placement="floating" fill="outline" placeholder="Insira seu sobrenome" [(ngModel)]="sobrenome"></ion-input>
+  <ion-select [(ngModel)]="sexo" #sexo placeholder="Selecione o sexo">
     <ion-select-option value="masculino">Masculino</ion-select-option>
     <ion-select-option value="feminino">Feminino</ion-select-option>
   </ion-select>
+  <ion-input label="CPF" #cpf label-placement="floating" fill="outline" placeholder="Insira seu CPF" [(ngModel)]="cpf"></ion-input>
+  <ion-input label="Data de Nascimento" #nascimento label-placement="floating" fill="outline" placeholder="DD/MM/AAAA" [(ngModel)]="nascimento"></ion-input>
+  <ion-input label="Telefone" #telefone label-placement="floating" fill="outline" placeholder="Insira seu telefone" [(ngModel)]="telefone"></ion-input>
+  <ion-input [(ngModel)]="cep" #cep name="cep" type="text" required></ion-input>
+  <ion-input [(ngModel)]="rua" #rua name="rua" type="text" required></ion-input>
+  <ion-input [(ngModel)]="numero" #numero name="numero" type="text" required></ion-input>
+  <ion-input [(ngModel)]="complemento" #complemento name="complemento" type="text"></ion-input>
+  <ion-input [(ngModel)]="referencia" #referencia name="referencia" type="text"></ion-input>
+  <ion-input [(ngModel)]="bairro" #bairro name="bairro" type="text" required></ion-input>
+  <ion-input [(ngModel)]="cidade" #cidade name="cidade" type="text" required></ion-input>
+  <ion-input [(ngModel)]="estado" #estado name="estado" type="text" required></ion-input>
+  <ion-button expand="block" (click)="cadastrarPessoal(nome1.value, sobrenome.value,sexo.value, cpf.value, nascimento.value, telefone.value , cep.value ,  rua.value, numero.value, complemento.value ,referencia.value, bairro.value, cidade.value, estado.value)">Cadastrar</ion-button>
+</form> -->
   <ion-input label="CPF" #cpf label-placement="floating" fill="outline" placeholder="Insira seu CPF" [(ngModel)]="cpf"></ion-input>
   <ion-input label="Data de Nascimento" #nascimento label-placement="floating" fill="outline" placeholder="DD/MM/AAAA" [(ngModel)]="nascimento"></ion-input>
   <ion-input label="Telefone" #telefone label-placement="floating" fill="outline" placeholder="Insira seu telefone" [(ngModel)]="telefone"></ion-input>
