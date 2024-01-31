@@ -1,11 +1,12 @@
-<ion-toolbar>
-  <ion-buttons slot="start">
-    <ion-menu-button></ion-menu-button>
-  </ion-buttons>
-</ion-toolbar>
 
-
-
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>TecHub</ion-title>
+  </ion-toolbar>
+</ion-header>
 
 
 <ion-content [fullscreen]="true">
@@ -45,7 +46,7 @@
         </ion-thumbnail>
         <ion-label>Console PlayStation 5</ion-label>
       </ion-item>
-      <ion-button (click)="goToProdutosPage()">Saiba mais</ion-button>
+      <ion-button class="custom-button" style="width: 90%; margin-left: 18px;" color="dark">Saiba mais</ion-button>
       
     </ion-list>
   </ion-card-content>

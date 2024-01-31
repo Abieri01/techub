@@ -57,8 +57,9 @@
     #senha>
 
   </ion-input>
-  <ion-button expand="block" (click)="Logar(email.value, senha.value)">Login</ion-button>
+  <ion-button  expand="block" (click)="Logar(email.value, senha.value)" class="custom-button" style="width: 90%; margin-left: 18px;" color="dark">Login</ion-button> 
 
+  <br>
   <p>Não é cadastrado? <a (click)="cad=!cad">Cadastrar-se</a></p>
 
   <ion-button fill="outline" expand="block" (click)="loginComGoogle()"><ion-thumbnail><img
