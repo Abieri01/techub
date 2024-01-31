@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Auth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signInWithPopup, GoogleAuthProvider, signOut } from '@angular/fire/auth';
 import { Firestore, addDoc, collection } from '@angular/fire/firestore';
 import { NavController } from '@ionic/angular';
+import { AlertController } from '@ionic/angular';
 
 @Component({
   selector: 'app-login-form',
@@ -31,6 +32,13 @@ export class LoginFormComponent implements OnInit {
   bairro: string = '';
   cidade: string = '';
   estado: string = '';
+  endereco: string;
+  habilidades: string;
+  empregosAnteriores: string;
+  tempoExperiencia: number;
+  nivelEducacao: string;
+  horariosDisponiveis: string;
+  cadt: boolean = false;
 
   setOpen(isOpen: boolean) {
     this.isToastOpen = isOpen;
@@ -47,7 +55,7 @@ export class LoginFormComponent implements OnInit {
     } else {
       this.mensagem = 'Usuário cadastrado com sucesso!';
       this.setOpen(true);
-      this.cad = !this.cad;
+      
       createUserWithEmailAndPassword(this.auth, email, senha)
         .then((userCredential) => {
           console.log('test1')
@@ -57,8 +65,48 @@ export class LoginFormComponent implements OnInit {
           this.uid = user.uid;
           this.email = email
           this.mensagem = 'Cadastro realizado com sucesso!';
+
           this.setOpen(true);
-          this.navCtrl.navigateForward('/cadastro'); 
+          if(this.cad){
+          this.cad = !this.cad;
+          this.navCtrl.navigateForward('/cadastro');
+          }else{
+            this.cadt = !this.cadt;
+          this.navCtrl.navigateForward('/cad-tec');
+          }
+          //this.salvarNoFirestore();  // Chame a função de salvar no Firestore
+        })
+        .catch((error) => {
+          const errorCode = error.code;
+          const errorMessage = error.message;
+          console.error('Erro ao cadastrar: ', errorMessage);
+        });
+    }
+  }
+
+  cadTec(email: any, senha: any, rpSenha: any) {
+    this.mensagem = '';
+    if (email == '' || senha == '' || rpSenha == '') {
+      this.mensagem = 'Preencha todos os campos do formulário!';
+      this.setOpen(true);
+    } else if (senha != rpSenha) {
+      this.mensagem = 'As senhas precisam ser iguais!';
+      this.setOpen(true);
+    } else {
+      this.mensagem = 'Usuário cadastrado com sucesso!';
+      this.setOpen(true);
+      this.cadt = !this.cadt;
+      createUserWithEmailAndPassword(this.auth, email, senha)
+        .then((userCredential) => {
+          console.log('test1')
+          const usertec = userCredential.user;
+          sessionStorage.setItem('email', email);
+          sessionStorage.setItem('uid', usertec.uid);
+          this.uid = usertec.uid;
+          this.email = email
+          this.mensagem = 'Cadastro realizado com sucesso!';
+          this.setOpen(true);
+          this.navCtrl.navigateForward('/cad-tec');
           //this.salvarNoFirestore();  // Chame a função de salvar no Firestore
         })
         .catch((error) => {
@@ -113,38 +161,32 @@ export class LoginFormComponent implements OnInit {
   logOutComGoogle() {
     return signOut(this.auth);
   }
-  // async cadastrarPessoal(nome: any, sobrenome: any, sexo: any, cpf: any, nascimento: any, telefone: any, cep: any, rua: any, numero: any, complemento: any, referencia: any, bairro: any, cidade: any, estado: any) {
-  //   try {
-  //     const docRef = await addDoc(collection(this.firestore, 'usuarios'), {
-  //       uid: this.uid,
-  //       email: this.email,
-  //       nome: nome,
-  //       sobrenome: sobrenome,
-  //       sexo: sexo,
-  //       cpf: cpf,
-  //       nascimento: nascimento,
-  //       telefone: telefone,
-  //       cep: cep,
-  //       rua: rua,
-  //       numero: numero,
-  //       complemento: complemento,
-  //       referencia: referencia,
-  //       bairro: bairro,
-  //       cidade: cidade,
-  //       estado: estado,
-  //     });
 
-  //     console.log('Documento salvo com ID: ', docRef.id);
-  //   } catch (e) {
-  //     console.error('Erro ao salvar no Firestore: ', e);
-  //   }
 
-  //   this.salvarNoFirestore();  // Chame a função de salvar no Firestore
-  // }
 
-  // async salvarNoFirestore() {
+  public alertButtons = [
+    {
+      text: 'Não',
+      cssClass: 'alert-button-cancel',
+      handler: () => {
+      },
+    },
+    {
+      text: 'Sim',
+      cssClass: 'alert-button-confirm',
+      handler: () => {
+        this.logout();
+      },
+    }
+  ];
 
-  // }
+  trocaLogin() {
+    if (this.cad)
+      this.cad = !this.cad
+    if (this.cadt)
+      this.cadt = !this.cadt
+  }
+
 
   constructor(private auth: Auth, private firestore: Firestore, private navCtrl: NavController) { }
 

@@ -1,13 +1,21 @@
+
 <ion-header>
   <ion-toolbar>
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
-      <ion-button (click)="goToProfilePage()">
-        <ion-icon name="cart"></ion-icon>
-      </ion-button>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
+
+<ion-fab slot="fixed" vertical="bottom" horizontal="end">
+ 
+  <ion-fab-button>
+    <ion-icon name="cart"></ion-icon>
+    <ion-badge color="danger">{{compras}}</ion-badge>
+  </ion-fab-button>
+</ion-fab>
+
+
 
 <ion-content>
   <ion-item>
@@ -23,18 +31,18 @@
     </ion-select>
   </ion-item>
 
-  <h1>Produtos</h1>
   <ion-card *ngFor="let p of produtosFiltrados">
     <img [src]="p.image" />
     <ion-card-header>
-      <ion-card-title>
+      <ion-card-title>{{ p.nome }}</ion-card-title>
+      <ion-card-subtitle>
         <div class="pcort">{{ p.preco.replace('.', ',') }}</div>
-      </ion-card-title>
-      <ion-card-subtitle>{{ p.nome }}</ion-card-subtitle>
+      </ion-card-subtitle>
     </ion-card-header>
-    <ion-card-content>
-      {{ p.descricao }}
+    <ion-card-content *ngIf="mostrarDescricao">
+      <div [innerHTML]="formatarDescricao(p.descricao)"></div>
     </ion-card-content>
-    <ion-button (click)="comprar(p)">Comprar</ion-button>
+    <button class="info" (click)="mostrarDescricao = !mostrarDescricao">Mais informações</button>
+    <ion-button class="custom-button" (click)="comprar(p)" color="dark" style="width: 90%;">Comprar</ion-button>
   </ion-card>
 </ion-content>
