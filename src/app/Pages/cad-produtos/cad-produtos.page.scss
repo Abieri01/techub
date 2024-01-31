@@ -65,9 +65,7 @@ ion-menu-button {
   text-decoration: none;
 }
 
-ion-content{
-  --background:rgb(232, 232, 232);
-}
+
 form{
   display: flex;
   flex-direction: column;
@@ -79,7 +77,7 @@ form{
 ion-input{
   border-radius: 7px;
   margin: 12px;
-  background-color: rgb(255, 255, 255);
+
   height: 5px;
   padding: 0;
   text-align: left;
@@ -112,4 +110,9 @@ ion-item{
 }
 #cadImg{
   display: none;
+}
+
+textarea {
+  width: 100%;
+  height: 100px;
 }

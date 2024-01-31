@@ -1,12 +1,12 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { CadtecPage } from './cadtec.page';
+import { CadTecPage } from './cad-tec.page';
 
-describe('CadtecPage', () => {
-  let component: CadtecPage;
-  let fixture: ComponentFixture<CadtecPage>;
+describe('CadTecPage', () => {
+  let component: CadTecPage;
+  let fixture: ComponentFixture<CadTecPage>;
 
   beforeEach(async(() => {
-    fixture = TestBed.createComponent(CadtecPage);
+    fixture = TestBed.createComponent(CadTecPage);
     component = fixture.componentInstance;
     fixture.detectChanges();
   }));

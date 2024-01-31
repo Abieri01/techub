@@ -4,17 +4,17 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { CadtecPageRoutingModule } from './cadtec-routing.module';
+import { PedidosSuportePageRoutingModule } from './pedidos-suporte-routing.module';
 
-import { CadtecPage } from './cadtec.page';
+import { PedidosSuportePage } from './pedidos-suporte.page';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    CadtecPageRoutingModule
+    PedidosSuportePageRoutingModule
   ],
-  declarations: [CadtecPage]
+  declarations: [PedidosSuportePage]
 })
-export class CadtecPageModule {}
+export class PedidosSuportePageModule {}

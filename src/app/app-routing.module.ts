@@ -45,8 +45,12 @@ const routes: Routes = [
     loadChildren: () => import('./Pages/cadastro/cadastro.module').then(m => m.CadastroPageModule) 
   },
   {
-    path: 'cadtec',
-    loadChildren: () => import('./Pages/cadtec/cadtec.module').then( m => m.CadtecPageModule)
+    path: 'pedidos-suporte',
+    loadChildren: () => import('./Pages/pedidos-suporte/pedidos-suporte.module').then( m => m.PedidosSuportePageModule)
+  },
+  {
+    path: 'cad-tec',
+    loadChildren: () => import('./Pages/cad-tec/cad-tec.module').then( m => m.CadTecPageModule)
   }
 ];
 
