@@ -82,9 +82,11 @@ export class ProdutosPage implements OnInit {
     this.compras++
   }
 
+
   irParaCarrinho() {
     this.navCtrl.navigateForward('/carrinho');
 
 
 }
+
 }

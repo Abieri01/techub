@@ -51,6 +51,7 @@ const routes: Routes = [
   {
     path: 'departamentos',
     loadChildren: () => import('./Pages/departamentos/departamentos.module').then( m => m.DepartamentosPageModule)
+
   }
 ];
 
