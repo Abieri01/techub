@@ -45,7 +45,7 @@
   </ion-item>
 
 
-  <ion-button  id="present-alert" style="width: 90%; margin-left: 18px;" color="dark" class="custom-button" >LogOut</ion-button>
+  <ion-button  id="present-alert" style="width: 90%; margin-left: 18px;" class="custom-button" >LogOut</ion-button>
  
   <ion-alert trigger="present-alert" class="custom-alert" header="Deseja sair?" [buttons]="alertButtons"></ion-alert>
 </div>
@@ -57,12 +57,12 @@
     #senha>
 
   </ion-input>
-  <ion-button  expand="block" (click)="Logar(email.value, senha.value)" class="custom-button" style="width: 90%; margin-left: 18px;" color="dark">Login</ion-button> 
+  <ion-button  expand="block" (click)="Logar(email.value, senha.value)" class="custom-button" style="width: 90%; margin-left: 18px;">Login</ion-button> 
 
   <br>
-  <p>Não é cadastrado? <a (click)="cad=!cad">Cadastrar-se</a></p>
+  <p>Não é cadastrado? <a (click)="cad=!cad" style="color:#FF6F00;">Cadastrar-se</a></p>
 
-  <ion-button fill="outline" expand="block" (click)="loginComGoogle()"><ion-thumbnail><img
+  <ion-button fill="outline" expand="block" (click)="loginComGoogle()" class="google-button" style="width: 90%;"><ion-thumbnail><img
         src="../../../assets/logos/googleLogo.png"></ion-thumbnail>Login com google</ion-button>
 </form>
 </div>
