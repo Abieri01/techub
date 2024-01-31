@@ -14,6 +14,7 @@ export class ProdutosPage implements OnInit {
   produtosFiltrados: any = [];
   searchTerm: string = '';
   searchCategory: string = 'all';
+  mostrarDescricao = false;
 
   constructor(private storage: Storage, private firestore: Firestore, private navCtrl: NavController) {}
 
@@ -71,11 +72,15 @@ export class ProdutosPage implements OnInit {
         break;
     }
   }
+  formatarDescricao(descricao: string): string {
+    // Lógica para formatar a descrição, se necessário
+    return descricao;
+  }
 
   compras:number=0
   comprar(produto: any){
     this.compras++
   }
 
-  
+
 }

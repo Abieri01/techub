@@ -42,7 +42,7 @@
 
       <ion-input fill="outline" placeholder="nome do produto" #productName> <ion-icon slot="start" name="lock-closed"
           aria-hidden="true"></ion-icon></ion-input>
-      <ion-input fill="outline" placeholder="descrição do produto" #productDescript></ion-input>
+      <textarea fill="" placeholder="descrição do produto" #productDescript style="white-space: pre-line;"></textarea>
       <ion-input fill="outline" value='{{preco1}}' #preco (keyup)="valorFormat($event.target)" placeholder="preço"></ion-input>
       <ion-input fill="outline" type="number" placeholder="quantidade estoque" #Qtd></ion-input>
       <ion-button fill="outline" expand="block" id="open-modal"><ion-thumbnail><img
@@ -54,18 +54,10 @@
         (click)="cadastrarProduto(true, productName.value,productDescript.value,preco.value,Qtd.value)">Cadastrar</ion-button>
 
     </form>
-
-
-
   </div>
 </ion-content>
-
-
-
 <ion-toast [isOpen]="isToastOpen" message="Produto cadastrado com sucesso." [duration]="5000"
     (didDismiss)="mensagem(false)"></ion-toast>
-
-
 <ion-modal #modal trigger="open-modal" [initialBreakpoint]="1" [breakpoints]="[0, 1]">
   <ng-template>
     <ion-content>
