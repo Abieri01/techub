@@ -43,6 +43,14 @@ const routes: Routes = [
   { 
     path: 'cadastro', 
     loadChildren: () => import('./Pages/cadastro/cadastro.module').then(m => m.CadastroPageModule) 
+  },
+  {
+    path: 'pedidos-suporte',
+    loadChildren: () => import('./Pages/pedidos-suporte/pedidos-suporte.module').then( m => m.PedidosSuportePageModule)
+  },
+  {
+    path: 'departamentos',
+    loadChildren: () => import('./Pages/departamentos/departamentos.module').then( m => m.DepartamentosPageModule)
   }
 ];
 
