@@ -72,15 +72,15 @@ export class ProdutosPage implements OnInit {
         break;
     }
   }
-
-  comprar(produto: any) {
-    // Adicione a lógica para comprar o produto
-  }
-
-
   formatarDescricao(descricao: string): string {
     // Lógica para formatar a descrição, se necessário
     return descricao;
   }
+
+  compras:number=0
+  comprar(produto: any){
+    this.compras++
+  }
+
 
 }
