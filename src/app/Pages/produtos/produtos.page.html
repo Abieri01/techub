@@ -4,13 +4,15 @@
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
-    <ion-title>Serviço Técnico</ion-title>
+    <ion-title>Produtos</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-fab slot="fixed" vertical="bottom" horizontal="end">
  
-  <ion-fab-button>
+
+  <ion-fab-button (click)="irParaCarrinho()">
+
     <ion-icon name="cart"></ion-icon>
     <ion-badge color="danger">{{compras}}</ion-badge>
   </ion-fab-button>
@@ -44,6 +46,6 @@
       <div [innerHTML]="formatarDescricao(p.descricao)"></div>
     </ion-card-content>
     <button class="info" (click)="mostrarDescricao = !mostrarDescricao">Mais informações</button>
-    <ion-button class="custom-button" (click)="comprar(p)" color="dark" style="width: 90%;">Comprar</ion-button>
+    <ion-button class="custom-button" (click)="comprar(p)" style="width: 90%;">Comprar</ion-button>
   </ion-card>
 </ion-content>
