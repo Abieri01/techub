@@ -4,12 +4,15 @@
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
+    <ion-title>Serviço Técnico</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-fab slot="fixed" vertical="bottom" horizontal="end">
  
-  <ion-fab-button>
+
+  <ion-fab-button (click)="irParaCarrinho()">
+
     <ion-icon name="cart"></ion-icon>
     <ion-badge color="danger">{{compras}}</ion-badge>
   </ion-fab-button>

@@ -15,6 +15,10 @@ export class PerfilPage implements OnInit {
     this.navCtrl.navigateForward('/produtos'); // Substitua pelo caminho real do seu perfil
   }
 
+  departs() {
+    this.navCtrl.navigateForward('/departamentos'); // Substitua pelo caminho real do seu perfil
+  }
+
 
   ngOnInit():void {
     this.checkAppMode();  
