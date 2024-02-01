@@ -45,19 +45,24 @@
   </ion-item>
 
 
-  <ion-button  id="present-alert" style="width: 90%; margin-left: 18px;" color="dark" class="custom-button" >LogOut</ion-button>
+
+  <ion-button  id="present-alert" style="width: 90%; margin-left: 18px;" class="custom-button" >LogOut</ion-button>
+
  
   <ion-alert trigger="present-alert" class="custom-alert" header="Deseja sair?" [buttons]="alertButtons"></ion-alert>
 </div>
 <div id="container">
+
 <form *ngIf="!cad && !cadt && !logado" >
+
   <h1>Formulário de Login</h1>
   <ion-input label-placement="floating" label="email" fill="outline" placeholder="insira seu email" #email></ion-input>
   <ion-input label="senha" type="password" label-placement="floating" fill="outline" placeholder="insira sua senha"
     #senha>
 
   </ion-input>
-  <ion-button expand="block" (click)="Logar(email.value, senha.value)">Login</ion-button>
+  <ion-button  expand="block" (click)="Logar(email.value, senha.value)" class="custom-button" style="width: 90%; margin-left: 18px;">Login</ion-button> 
+
 
   <p>Não é cadastrado? <a (click)="cad=!cad">Cadastrar-se</a></p>
   <p>Quer ser um técnico parceiro? <a (click)="cadt=!cadt">Cadastrar-se</a></p>
@@ -66,6 +71,7 @@
 </form>
 </div>
 <form *ngIf="cad || cadt">
+
   <h1>Formulário de Cadastro</h1>
   <ion-input label="email" label-placement="floating" fill="outline" placeholder="insira seu email" #email></ion-input>
   <ion-input label="senha" type="password" label-placement="floating" fill="outline" placeholder="insira sua senha"
