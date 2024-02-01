@@ -49,8 +49,14 @@ const routes: Routes = [
     loadChildren: () => import('./Pages/pedidos-suporte/pedidos-suporte.module').then( m => m.PedidosSuportePageModule)
   },
   {
+
+    path: 'cad-tec',
+    loadChildren: () => import('./Pages/cad-tec/cad-tec.module').then( m => m.CadTecPageModule)
+  },
+  {
     path: 'departamentos',
     loadChildren: () => import('./Pages/departamentos/departamentos.module').then( m => m.DepartamentosPageModule)
+
 
   }
 ];

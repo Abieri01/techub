@@ -40,7 +40,9 @@
       Custo do serviço - {{ tecnico.custoServico }}
     </ion-card-content>
 
+
     <ion-button id="{{tecnico.nome}}" class="custom-button" style="width: 90%; margin-left: 18px;">Contratar</ion-button>  <!-- (click)="contratar(tecnico)" -->
+
     <ion-modal id="example-modal" #modal trigger="{{tecnico.nome}}">
   <ng-template>
     <div class="wrapper">
@@ -54,7 +56,9 @@
 
         <ion-item button="true" detail="false" style="height: 80%;">
           <ion-label>Escolha a data e hora</ion-label>
+
           <ion-datetime display-Format="DD-MM-YYYY"></ion-datetime>
+
         </ion-item>
 
         <ion-item button="true" detail="false" class="custom-button">

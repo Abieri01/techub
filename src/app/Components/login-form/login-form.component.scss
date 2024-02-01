@@ -2,6 +2,7 @@ form{
     display: flex;
     flex-direction: column;
     width: 300px;
+    width: 300px;
     align-items: center;
     text-align: center;
     justify-content: center;
@@ -46,12 +47,14 @@ form{
 ion-input{
     margin: 20px;
 
+
 }
 ion-thumbnail{
     --size:25px;
 }
 
 .custom-button {
+
   --ion-color-base: #FF6F00; /* Define a cor da letra como laranja */
   --ion-color-dark-contrast: #FF6F00; /* Define a cor da letra quando o botão está em um fundo escuro como laranja */
   --border-radius: 20px; /* Define a borda redonda com raio de 20px */
@@ -61,6 +64,7 @@ ion-thumbnail{
   --box-shadow: 0 0 0 2px var(--ion-color-base), 0 0 0 2px var(--ion-color-dark-contrast); /* Adiciona uma sombra para destacar a borda e ajusta a largura da borda para 4px */
     margin-right: 15px;
   }
+
 
 .google-button{
   --ion-color-base: #FF6F00; /* Define a cor da letra como laranja */
