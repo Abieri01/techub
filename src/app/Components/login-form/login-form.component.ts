@@ -6,8 +6,6 @@ import { AlertController } from '@ionic/angular';
 
 
 
-
-
 @Component({
   selector: 'app-login-form',
   templateUrl: './login-form.component.html',
@@ -61,8 +59,7 @@ export class LoginFormComponent implements OnInit {
       this.setOpen(true);
       
       
-      
-      
+
       createUserWithEmailAndPassword(this.auth, email, senha)
         .then((userCredential) => {
           console.log('test1')
@@ -72,6 +69,7 @@ export class LoginFormComponent implements OnInit {
           this.uid = user.uid;
           this.email = email
           this.mensagem = 'Cadastro realizado com sucesso!';
+
 
 
           this.setOpen(true);
@@ -91,6 +89,7 @@ export class LoginFormComponent implements OnInit {
         });
     }
   }
+
 
   cadTec(email: any, senha: any, rpSenha: any) {
     this.mensagem = '';
@@ -206,8 +205,6 @@ export class LoginFormComponent implements OnInit {
       this.cadt = !this.cadt
   }
 
-
-    
   
   constructor(private auth: Auth, private firestore: Firestore, private navCtrl: NavController) { }
 

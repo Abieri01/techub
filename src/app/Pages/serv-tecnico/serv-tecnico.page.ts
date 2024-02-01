@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NavController, ToastController } from '@ionic/angular';
-import { collection, Firestore } from '@angular/fire/firestore';
+import { collection, Firestore, getDocs, query, where } from '@angular/fire/firestore';
 import { addDoc } from 'firebase/firestore';
-
 
 @Component({
   selector: 'app-serv-tecnico',
@@ -17,65 +16,40 @@ export class ServTecnicoPage implements OnInit {
   searchCategory: string = 'all';
   selectedTime: string = '';
   currentDate: string = new Date().toISOString();
-  tecnicos = [
-    {
-      nome: 'Matheus Abade',
-      profissao: 'Manutenção de Computadores',
-      descricao: 'Formatação, montagem e limpeza de computadores',
-      diasAtendimento: 'Segunda a sábado',
-      horarioAtendimento: '8:00 - 18:00',
-      custoServico: 'R$ 250,00',
-      avaliacao: 4.8,
-      hasAlertShown: false, // Nova propriedade
-    },
-    {
-      nome: 'Vitor Albuquerque',
-      profissao: 'Instalação de cabo de internet',
-      descricao: 'Realiza serviços de instalação de internet, conectorização e passagem dos cabos.',
-      diasAtendimento: 'Segunda a sabado',
-      horarioAtendimento: '8:00 - 18:00',
-      custoServico: 'R$ 250,00',
-      avaliacao: 4.8,
-      hasAlertShown: false, // Nova propriedade
-    },
-    {
-      nome: 'Patrick Braz',
-      profissao: 'Manutenção e reparo de hardwares',
-      descricao: 'Realiza o reparo e manutenção envolvendo de peças de hardwares',
-      diasAtendimento: 'Segunda a sábado',
-      horarioAtendimento: '10:00 - 20:00',
-      custoServico: 'R$ 250,00',
-      avaliacao: 4.8,
-      hasAlertShown: false, // Nova propriedade
-    },
-    {
-      nome: 'Leonardo Abieri',
-      profissao: 'Manutenção e reparo de hardwares / Manutenção de Computadores',
-      descricao: 'Realiza o reparo e manutenção envolvendo de peças de hardwares / Realiza o reparo e manutenção envolvendo de peças de hardwares',
-      diasAtendimento: 'Segunda a sábado',
-      horarioAtendimento: '08:00 - 20:00',
-      custoServico: 'R$ 250,00',
-      avaliacao: 4.8,
-      hasAlertShown: false, // Nova propriedade
-    },
-    {
-      nome: 'Pedro Cachaça',
-      profissao: 'Manutenção e reparo de hardwares',
-      descricao: 'Realiza o reparo e manutenção envolvendo de peças de hardwares',
-      diasAtendimento: 'Segunda a sabado',
-      horarioAtendimento: '10:00 - 20:00',
-      custoServico: 'R$ 200,00',
-      avaliacao: 3.9,
-      hasAlertShown: false, // Nova propriedade
-    },
-    
-
-  ];
+  tecnicos: any[] = [];
+  tecnicosFiltrados: any[] = [];
   searchResults: any[] = [];
 
-  constructor(private navCtrl: NavController, private toastController: ToastController, private firestore: Firestore,) {}
+  constructor(
+    private navCtrl: NavController,
+    private toastController: ToastController,
+    private firestore: Firestore,
+  ) {}
 
   isModalOpen = false;
+
+  async listarBanco() {
+    const querySnapshot = await getDocs(collection(this.firestore, 'tecnicos'));
+
+    querySnapshot.forEach((doc) => {
+      console.log(`${doc.id} => ${doc.data()['nome']}`);
+      this.tecnicos = [
+        ...this.tecnicos,
+        {
+          nome: doc.data()['nome'],
+          sobrenome: doc.data()['sobrenome'],
+          habilidades: doc.data()['habilidades'],
+          email: doc.data()['email'],
+          horariosDisponiveis: doc.data()['horariosDisponiveis'],
+          tempoExperiencia: doc.data()['tempoExperiencia'],
+          telefone: doc.data()['telefone'],
+        },
+      ];
+    });
+
+    // Inicialmente, definimos tecnicosFiltrados como todos os tecnicos
+    this.tecnicosFiltrados = this.tecnicos;
+  }
 
   setOpen(isOpen: boolean) {
     this.isModalOpen = isOpen;
@@ -83,6 +57,7 @@ export class ServTecnicoPage implements OnInit {
 
   ngOnInit() {
     this.checkAppMode();
+    this.listarBanco();
     this.filterItems();
   }
 
@@ -101,39 +76,43 @@ export class ServTecnicoPage implements OnInit {
   filterItems() {
     this.searchResults = this.tecnicos.filter((tecnico) => {
       if (this.searchCategory === 'above3stars') {
-        return tecnico.avaliacao > 4;
+        // Lógica para filtrar técnicos com avaliação acima de 4 estrelas
+        return this.getAverageRating(tecnico) > 4;
       } else if (this.searchCategory === 'below3stars') {
-        return tecnico.avaliacao <= 4;
+        // Lógica para filtrar técnicos com avaliação 4 estrelas ou abaixo
+        return this.getAverageRating(tecnico) <= 4;
       } else {
+        // Lógica para filtrar técnicos com habilidades correspondentes à categoria de pesquisa
         return (
-          (this.searchCategory === 'all' || tecnico.descricao.toLowerCase().includes(this.searchCategory.toLowerCase())) &&
-          (tecnico.nome.toLowerCase().includes(this.searchTerm.toLowerCase()) ||
-            tecnico.descricao.toLowerCase().includes(this.searchTerm.toLowerCase()) ||
-            tecnico.custoServico.toLowerCase().includes(this.searchTerm.toLowerCase())
-          )
+          (this.searchCategory === 'all' || this.hasMatchingSkill(tecnico)) &&
+          (tecnico.nome.toLowerCase().includes(this.searchTerm.toLowerCase()))
         );
       }
     });
   }
-
-  async fazerPedido(descricao: any, data: any, hora: any) {                   
+  
+  hasMatchingSkill(tecnico: any): boolean {
+    // Verifica se a habilidade do técnico contém a categoria de pesquisa
+    return tecnico.habilidades.toLowerCase().includes(this.searchCategory.toLowerCase());
+  }
+  
+  async fazerPedido(descricao: any, data: any, hora: any) {
     const docRef = await addDoc(collection(this.firestore, 'pedidosTec'), {
       descricao: descricao,
       data: data,
       hora: hora,
-  });
-  console.log('Salvo no banco de dados');
-  const toast = await this.toastController.create({
-    message: 'Pedido realizado com sucesso!',
-    duration: 3000, 
-  });
-
-} 
+    });
+    console.log('Salvo no banco de dados');
+    const toast = await this.toastController.create({
+      message: 'Pedido realizado com sucesso!',
+      duration: 3000,
+    });
+  }
 
   async presentToast() {
     const toast = await this.toastController.create({
       message: 'Pedido foi realizado!',
-      duration: 2000, // 2 segundos
+      duration: 2000,
       position: 'bottom',
       color: 'success',
       buttons: [
@@ -152,5 +131,11 @@ export class ServTecnicoPage implements OnInit {
       stars.push(i <= aval ? 'star' : 'star-outline');
     }
     return stars;
+  }
+
+  private getAverageRating(tecnico: any): number {
+    // Implemente a lógica para calcular a avaliação média do técnico (se aplicável)
+    // Se não houver lógica específica, retorne uma avaliação padrão.
+    return 0;
   }
 }
