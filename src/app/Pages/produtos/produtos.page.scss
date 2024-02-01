@@ -1,5 +1,5 @@
 
- ion-header {
+ion-header {
   ion-toolbar {
     ion-title {
       font-size: 1.5rem;
@@ -7,7 +7,6 @@
       margin-left: 90px;
       color: #FF6F00;
       font-weight: bold;
-
     }
   }
 }
@@ -51,6 +50,5 @@ ion-button{
       color: #FF6F00;
     --box-shadow: 0 0 0 2px var(--ion-color-base), 0 0 0 2px var(--ion-color-dark-contrast); /* Adiciona uma sombra para destacar a borda e ajusta a largura da borda para 4px */
   }
-
 
 

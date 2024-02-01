@@ -46,12 +46,14 @@
 
 
 
+
   <ion-button  id="present-alert" style="width: 90%; margin-left: 18px;" class="custom-button" >LogOut</ion-button>
 
  
   <ion-alert trigger="present-alert" class="custom-alert" header="Deseja sair?" [buttons]="alertButtons"></ion-alert>
 </div>
 <div id="container">
+
 
 <form *ngIf="!cad && !cadt && !logado" >
 
@@ -61,15 +63,20 @@
     #senha>
 
   </ion-input>
-  <ion-button  expand="block" (click)="Logar(email.value, senha.value)" class="custom-button" style="width: 90%; height: 40px; margin-left: 18px;">Login</ion-button> 
 
-<ion-button fill="outline" expand="block" (click)="loginComGoogle()" class="google-button" style="width: 90%; height: 45px; "><ion-thumbnail><img
-        src="../../../assets/logos/googleLogo.png"></ion-thumbnail>Login com google</ion-button>
-  <p style="margin-top: 20px;">Não é cadastrado? <a (click)="cad=!cad" class="cadastro-login">Cadastrar-se</a></p>
-  <p style="margin-top: 10px;">Quer ser um técnico parceiro? <a (click)="cadt=!cadt" class="cadastro-tec">Junte-se a nós</a></p>
+  <ion-button  expand="block" (click)="Logar(email.value, senha.value)" class="custom-button" style="width: 90%; margin-left: 18px; height: 40px;">Login</ion-button> 
+
+  <ion-button fill="outline" expand="block" (click)="loginComGoogle()" class="google-button" style="width: 90%; height: 45px;"><ion-thumbnail><img
+    src="../../../assets/logos/googleLogo.png"></ion-thumbnail>Login com google</ion-button>
+  <p style="margin-top: 20px">Não é cadastrado? <a (click)="cad=!cad" class="cadastro-login">Cadastrar-se</a></p>
+  <p style="margin-top: 10px">Quer ser um técnico parceiro? <a (click)="cadt=!cadt" class="cadastro-tec">Junte-se a nós</a></p>
+  
 </form>
 </div>
-<form *ngIf="cad || cadt" class="custom-cadastro">
+
+<div id="container">
+<form *ngIf="cad || cadt">
+
 
   <h1>Formulário de Cadastro</h1>
   <ion-input label="email" label-placement="floating" fill="outline" placeholder="insira seu email" #email ></ion-input>
@@ -78,30 +85,13 @@
   <ion-input label="Repita sua senha" type="password" label-placement="floating" fill="outline"
     placeholder="insira novamente sua senha" #RpSenha></ion-input>
 
+
   <ion-button expand="block" class="custom-button" (click)="cadUser(email.value, senha.value, RpSenha.value)" style="width: 90%; height: 40px; margin-left: 18px;">Cadastrar</ion-button>
   <p style="margin-top: 20px;">Já é cadastrado? <a (click)="trocaLogin()" class="cadastro-login">fazer login</a></p>
+
  
 </form>
-<!-- <form *ngIf="cadPessoal">
-  <h1>Formulário de Cadastro Pessoal</h1>
-  <ion-input label="Nome" #nome1 label-placement="floating" fill="outline" placeholder="Insira seu nome" [(ngModel)]="nome"></ion-input>
-  <ion-input label="Sobrenome" #sobrenome label-placement="floating" fill="outline" placeholder="Insira seu sobrenome" [(ngModel)]="sobrenome"></ion-input>
-  <ion-select [(ngModel)]="sexo" #sexo placeholder="Selecione o sexo">
-    <ion-select-option value="masculino">Masculino</ion-select-option>
-    <ion-select-option value="feminino">Feminino</ion-select-option>
-  </ion-select>
-  <ion-input label="CPF" #cpf label-placement="floating" fill="outline" placeholder="Insira seu CPF" [(ngModel)]="cpf"></ion-input>
-  <ion-input label="Data de Nascimento" #nascimento label-placement="floating" fill="outline" placeholder="DD/MM/AAAA" [(ngModel)]="nascimento"></ion-input>
-  <ion-input label="Telefone" #telefone label-placement="floating" fill="outline" placeholder="Insira seu telefone" [(ngModel)]="telefone"></ion-input>
-  <ion-input [(ngModel)]="cep" #cep name="cep" type="text" required></ion-input>
-  <ion-input [(ngModel)]="rua" #rua name="rua" type="text" required></ion-input>
-  <ion-input [(ngModel)]="numero" #numero name="numero" type="text" required></ion-input>
-  <ion-input [(ngModel)]="complemento" #complemento name="complemento" type="text"></ion-input>
-  <ion-input [(ngModel)]="referencia" #referencia name="referencia" type="text"></ion-input>
-  <ion-input [(ngModel)]="bairro" #bairro name="bairro" type="text" required></ion-input>
-  <ion-input [(ngModel)]="cidade" #cidade name="cidade" type="text" required></ion-input>
-  <ion-input [(ngModel)]="estado" #estado name="estado" type="text" required></ion-input>
-  <ion-button expand="block" (click)="cadastrarPessoal(nome1.value, sobrenome.value,sexo.value, cpf.value, nascimento.value, telefone.value , cep.value ,  rua.value, numero.value, complemento.value ,referencia.value, bairro.value, cidade.value, estado.value)">Cadastrar</ion-button>
-</form> -->
+</div>
+
 
 <ion-toast [isOpen]="isToastOpen" message={{mensagem}} [duration]="5000" (didDismiss)="setOpen(false)"></ion-toast>

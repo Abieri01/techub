@@ -59,6 +59,7 @@ export class LoginFormComponent implements OnInit {
       this.setOpen(true);
       
       
+
       createUserWithEmailAndPassword(this.auth, email, senha)
         .then((userCredential) => {
           console.log('test1')
@@ -68,6 +69,7 @@ export class LoginFormComponent implements OnInit {
           this.uid = user.uid;
           this.email = email
           this.mensagem = 'Cadastro realizado com sucesso!';
+
 
 
           this.setOpen(true);
@@ -87,6 +89,7 @@ export class LoginFormComponent implements OnInit {
         });
     }
   }
+
 
   cadTec(email: any, senha: any, rpSenha: any) {
     this.mensagem = '';
@@ -109,8 +112,16 @@ export class LoginFormComponent implements OnInit {
           this.uid = usertec.uid;
           this.email = email
           this.mensagem = 'Cadastro realizado com sucesso!';
+
+
           this.setOpen(true);
+          if(this.cad){
+          this.cad = !this.cad;
+          this.navCtrl.navigateForward('/cadastro');
+          }else{
+            this.cadt = !this.cadt;
           this.navCtrl.navigateForward('/cad-tec');
+          }
           //this.salvarNoFirestore();  // Chame a função de salvar no Firestore
         })
         .catch((error) => {
@@ -120,6 +131,8 @@ export class LoginFormComponent implements OnInit {
         });
     }
   }
+
+  
   Logar(email: any, senha: any) {
     signInWithEmailAndPassword(this.auth, email, senha)
       .then((userCredential) => {
