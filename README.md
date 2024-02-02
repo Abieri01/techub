@@ -28,6 +28,8 @@ produtos de maneira descomplicada. Além disso, a startup desenvolveu uma comuni
   
 - **Colaboração entre Técnicos:** A plataforma oferece um espaço exclusivo para técnicos de informática colaborarem, trocarem experiências e otimizarem seus serviços de consertos em domicílio.
 
+
+
 ## Ferramentas de desenvolvimento
 
 - TypeScript (50,4%)
