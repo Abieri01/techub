@@ -2,6 +2,7 @@
 
  <h1>Techub Connection<h1>  
 
+![LimeWire_AI_Studio_Asset](https://github.com/albuquerque14/TecHub/assets/127431207/a8e4de55-babd-4cf5-88a7-b9ac40edd0da)
 
   
 ## Descrição
