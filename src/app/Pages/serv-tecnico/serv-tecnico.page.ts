@@ -12,6 +12,7 @@ interface Tecnico {
   telefone: string;
   email: string;
   categoria: string; // Certifique-se de ter a propriedade 'categoria'
+  image: string;
 }
 
 @Component({
@@ -41,7 +42,6 @@ export class ServTecnicoPage implements OnInit {
 
   async listarBanco() {
     const querySnapshot = await getDocs(collection(this.firestore, 'tecnicos'));
-
     querySnapshot.forEach((doc) => {
       console.log(`${doc.id} => ${doc.data()['nome']}`);
       this.tecnicos = [
@@ -54,7 +54,7 @@ export class ServTecnicoPage implements OnInit {
           horariosDisponiveis: doc.data()['horariosDisponiveis'],
           tempoExperiencia: doc.data()['tempoExperiencia'],
           telefone: doc.data()['telefone'],
-        },
+          image: doc.data()['image'] },
       ];
     });
 
