@@ -13,15 +13,14 @@
     <ion-label>Categoria de Pesquisa</ion-label>
     <ion-select [(ngModel)]="searchCategory" (ionChange)="filterItems()">
       <ion-select-option value="all">Todas</ion-select-option>
-      <ion-select-option value="montagem">Manutenção de Computadores</ion-select-option>
-      <ion-select-option value="instalação">Instalação de cabo de internet</ion-select-option>
-      <ion-select-option value="hardware">Manutenção e reparo de hardwares</ion-select-option>
-      <ion-select-option value="above3stars">Avaliação acima de 4 estrelas</ion-select-option>
-      <ion-select-option value="below3stars">Avaliação abaixo de 4 estrelas</ion-select-option>
+      <ion-select-option value="Manutenção de Computadores">Manutenção de Computadores</ion-select-option>
+      <ion-select-option value="Instalação de cabo de internet">Instalação de cabo de internet</ion-select-option>
+      <ion-select-option value="Manutenção e reparo de hardwares">Manutenção e reparo de hardwares</ion-select-option>
     </ion-select>
   </ion-item>
 
-  <ion-card *ngFor="let tecnico of tecnicos">
+
+  <ion-card *ngFor="let tecnico of tecnicosFiltrados">
     <div class="rounded-image">
       <img alt="Silhouette of mountains" src="https://ionicframework.com/docs/img/demos/card-media.png" />
     </div>
