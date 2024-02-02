@@ -59,6 +59,7 @@ export class LoginFormComponent implements OnInit {
       this.setOpen(true);
       
       
+
       createUserWithEmailAndPassword(this.auth, email, senha)
         .then((userCredential) => {
           console.log('test1')
@@ -70,6 +71,7 @@ export class LoginFormComponent implements OnInit {
           this.mensagem = 'Cadastro realizado com sucesso!';
 
 
+
           this.setOpen(true);
           if(this.cad){
           this.cad = !this.cad;
@@ -87,6 +89,7 @@ export class LoginFormComponent implements OnInit {
         });
     }
   }
+
 
   cadTec(email: any, senha: any, rpSenha: any) {
     this.mensagem = '';
@@ -109,8 +112,9 @@ export class LoginFormComponent implements OnInit {
           this.uid = usertec.uid;
           this.email = email
           this.mensagem = 'Cadastro realizado com sucesso!';
+
+
           this.setOpen(true);
-          this.navCtrl.navigateForward('/cad-tec');
           if(this.cad){
           this.cad = !this.cad;
           this.navCtrl.navigateForward('/cadastro');
@@ -128,38 +132,7 @@ export class LoginFormComponent implements OnInit {
     }
   }
 
-  cadTec(email: any, senha: any, rpSenha: any) {
-    this.mensagem = '';
-    if (email == '' || senha == '' || rpSenha == '') {
-      this.mensagem = 'Preencha todos os campos do formulário!';
-      this.setOpen(true);
-    } else if (senha != rpSenha) {
-      this.mensagem = 'As senhas precisam ser iguais!';
-      this.setOpen(true);
-    } else {
-      this.mensagem = 'Usuário cadastrado com sucesso!';
-      this.setOpen(true);
-      this.cadt = !this.cadt;
-      createUserWithEmailAndPassword(this.auth, email, senha)
-        .then((userCredential) => {
-          console.log('test1')
-          const usertec = userCredential.user;
-          sessionStorage.setItem('email', email);
-          sessionStorage.setItem('uid', usertec.uid);
-          this.uid = usertec.uid;
-          this.email = email
-          this.mensagem = 'Cadastro realizado com sucesso!';
-          this.setOpen(true);
-          this.navCtrl.navigateForward('/cad-tec');
-          //this.salvarNoFirestore();  // Chame a função de salvar no Firestore
-        })
-        .catch((error) => {
-          const errorCode = error.code;
-          const errorMessage = error.message;
-          console.error('Erro ao cadastrar: ', errorMessage);
-        });
-    }
-  }
+  
   Logar(email: any, senha: any) {
     signInWithEmailAndPassword(this.auth, email, senha)
       .then((userCredential) => {
@@ -232,14 +205,6 @@ export class LoginFormComponent implements OnInit {
       this.cadt = !this.cadt
   }
 
-
-    },
-  }
-  ];
-
-
-  
-  
   
   constructor(private auth: Auth, private firestore: Firestore, private navCtrl: NavController) { }
 

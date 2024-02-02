@@ -6,9 +6,14 @@ form{
     align-items: center;
     text-align: center;
     justify-content: center;
-    border: 1px solid black;
+    border: 2px solid black;
     border-radius: 10px;
     padding: 30px;
+    background-color: #ffffffd2;
+}
+
+form > h1{
+  color: black;
 }
 
 #container {
@@ -46,6 +51,11 @@ form{
 }
 ion-input{
     margin: 20px;
+    border: 1px solid black;
+    border-radius: 10px;
+    color: black;
+    
+
 
 
 }
@@ -66,13 +76,30 @@ ion-thumbnail{
   }
 
 
-.google-button{
-  --ion-color-base: #FF6F00; /* Define a cor da letra como laranja */
-  --ion-color-dark-contrast: #FF6F00; /* Define a cor da letra quando o botão está em um fundo escuro como laranja */
-  --border-radius: 20px; /* Define a borda redonda com raio de 20px */
-  --background: rgb(12, 12, 12); /* Define o fundo como transparente para que a cor de fundo padrão do Ionic seja utilizada */
-  --border-color: #FF6F00;
-  color: #FF6F00;
-  
-}
+
+  .google-button{
+    --ion-color-base: #FF6F00; /* Define a cor da letra como laranja */
+    --ion-color-dark-contrast: #FF6F00; /* Define a cor da letra quando o botão está em um fundo escuro como laranja */
+    --border-radius: 25px; /* Define a borda redonda com raio de 20px */
+    --background: rgb(12, 12, 12); /* Define o fundo como transparente para que a cor de fundo padrão do Ionic seja utilizada */
+    --border-color: #FF6F00;
+    color: #FF6F00;
+  }
+
+  .cadastro-login{
+    color: #FF6F00;
+  }
+
+  .cadastro-tec{
+    color: #FF6F00;
+  }
+
+  .custom-cadastro {
+    --ion-color-base: #FF6F00; /* Define a cor da letra como laranja */
+    --ion-color-dark-contrast: #FF6F00; /* Define a cor da letra quando o botão está em um fundo escuro como laranja */
+    --border-radius: 25px; /* Define a borda redonda com raio de 20px */
+    --background: rgb(12, 12, 12); /* Define o fundo como transparente para que a cor de fundo padrão do Ionic seja utilizada */
+    --border-color: #FF6F00;
+  }
+
 
