@@ -20,6 +20,7 @@ export class AppComponent {
     { title: 'Cadastrar Produtos', url: '/cad-produtos', icon: 'bag-add' },
     { title: 'Editar Produtos', url: '/edit-produtos', icon: 'create' },
     { title: 'Deletar Produtos', url: '/delete-produtos', icon: 'trash' },
+    { title: 'Vizualizar Pedidos', url: '/pedidos-suporte', icon: 'receipt' },
   ];
 
   darkMode = false;

@@ -5,6 +5,9 @@
       ion-title {
         font-size: 1.5rem;
         font-weight: bold;
+        margin-left: 60px;
+        color: #FF6F00;
+        font-weight: bold;
 
       }
     }
@@ -41,22 +44,57 @@
         }
       }
   
-      ion-button {
-        margin-top: 16px;
-        background-color: #007bff;
-        color: #fff;
-        width: 100%;
-  
-        &:hover {
-          background-color: #0056b3;
-        }
-      }
-  
       ion-alert {
         header {
           font-weight: bold;
         }
       }
+    
+      ion-card-header {
+        margin-left: 1px;
+        display: flex;
+        align-items: start;
+        justify-content: space-between;
+        padding: 8px;
+      }
+
+      .rounded-image {
+        width: 120px;
+        height: 120px;
+        border-radius: 50%;
+        overflow: hidden;
+        margin-left: 135px;
+      
+      }
+      
+      .rounded-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+   
+      .header-content {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        
+      }
+      
+      .header-content ion-card-title {
+        margin-bottom: 4px;
+      }
+
+      .custom-button {
+        --ion-color-base: #FF6F00; /* Define a cor da letra como laranja */
+        --ion-color-dark-contrast: #FF6F00; /* Define a cor da letra quando o botão está em um fundo escuro como laranja */
+        --border-radius: 20px; /* Define a borda redonda com raio de 20px */
+        --background: rgb(0, 0, 0); /* Define o fundo como transparente para que a cor de fundo padrão do Ionic seja utilizada */
+        --border-color: #FF6F00;
+          color: #FF6F00;
+        --box-shadow: 0 0 0 2px var(--ion-color-base), 0 0 0 2px var(--ion-color-dark-contrast); /* Adiciona uma sombra para destacar a borda e ajusta a largura da borda para 4px */
+          margin-bottom: 20px;
+      }
     }
   }
   
+ 

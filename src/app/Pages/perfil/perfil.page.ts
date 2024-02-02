@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
+import { NavController } from '@ionic/angular';
 @Component({
   selector: 'app-perfil',
   templateUrl: './perfil.page.html',
@@ -9,8 +9,15 @@ export class PerfilPage implements OnInit {
   darkMode = false;
 
 
-  constructor() { }
+  constructor(private navCtrl: NavController) { }
 
+  goToProdutosPage() {
+    this.navCtrl.navigateForward('/produtos'); // Substitua pelo caminho real do seu perfil
+  }
+
+  departs() {
+    this.navCtrl.navigateForward('/departamentos'); // Substitua pelo caminho real do seu perfil
+  }
 
 
   ngOnInit():void {

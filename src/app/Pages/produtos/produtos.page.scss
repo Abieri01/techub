@@ -1,13 +1,19 @@
-h1{
-    text-align: center;
-    color: rgb(82, 31, 8);
-    text-shadow: 3px 3px 6px rgb(73, 73, 73);
-    font-weight: 700;
+
+ion-header {
+  ion-toolbar {
+    ion-title {
+      font-size: 1.5rem;
+      font-weight: bold;
+      margin-left: 90px;
+      color: #FF6F00;
+      font-weight: bold;
+    }
+  }
 }
+
 .pcort{
-    font-size: 22px;
+    font-size: 18px;
     color: #555;
-    text-decoration: line-through;
     margin-right: 20px;
 }
 .desconto{
@@ -20,4 +26,29 @@ ion-card-title{
     align-items: center;
     align-content: center;
 }
+
+ion-button{
+    margin: 15px;
+    margin-top: 50px;
+}
+
+.info {
+    text-decoration: underline;
+    position: relative;
+    margin-left: 18px;
+    font-size: 15px;
+    background-color: transparent;
+    color: #FF6F00;
+  }
+
+  .custom-button {
+    --ion-color-base: #FF6F00; /* Define a cor da letra como laranja */
+    --ion-color-dark-contrast: #FF6F00; /* Define a cor da letra quando o botão está em um fundo escuro como laranja */
+    --border-radius: 20px; /* Define a borda redonda com raio de 20px */
+    --background: rgb(0, 0, 0); /* Define o fundo como transparente para que a cor de fundo padrão do Ionic seja utilizada */
+    --border-color: #FF6F00;
+      color: #FF6F00;
+    --box-shadow: 0 0 0 2px var(--ion-color-base), 0 0 0 2px var(--ion-color-dark-contrast); /* Adiciona uma sombra para destacar a borda e ajusta a largura da borda para 4px */
+  }
+
 

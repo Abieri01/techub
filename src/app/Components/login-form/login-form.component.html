@@ -1,32 +1,97 @@
-<div *ngIf="logado">
-  <ion-img src={{user.foto}}></ion-img>
-  <h1>{{user.nome}}</h1>
-  <ion-button (click)="logout()">LogOut</ion-button>
+
+<div *ngIf="logado" class="perfillogado">
+  
+  <ion-item [button]="false" lines="full" class="icon">
+    <ion-avatar aria-hidden="true" slot="start">
+      <ion-img src={{user.foto}}></ion-img>
+    </ion-avatar>
+    <ion-icon name="pencil-sharp" slot="start"></ion-icon>
+    <ion-label>{{user.nome}}</ion-label>
+  </ion-item>
+  <ion-item [button]="true" lines="full">
+    <ion-icon name="person-sharp"></ion-icon>
+    <ion-label>Meus dados  </ion-label>
+    <ion-note slot="end"></ion-note>
+  </ion-item>
+  <ion-item [button]="true" lines="full">
+    <ion-icon name="basket-sharp"></ion-icon>
+    <ion-label>Meus pedidos  </ion-label>
+    <ion-note slot="end"></ion-note>
+  </ion-item>
+  <ion-item [button]="true" lines="full">
+    <ion-icon name="thumbs-up-sharp"></ion-icon>
+    <ion-label>Avaliações  </ion-label>
+    <ion-note slot="end"></ion-note>
+  </ion-item>
+  <ion-item [button]="true" lines="full">
+    <ion-icon name="chatbox-sharp"></ion-icon>
+    <ion-label>Chat  </ion-label>
+    <ion-note slot="end"></ion-note>
+  </ion-item>
+  <ion-item [button]="true" lines="full">
+    <ion-icon name="bookmark-sharp"></ion-icon>
+    <ion-label>Favoritos  </ion-label>
+    <ion-note slot="end"></ion-note>
+  </ion-item>
+  <ion-item [button]="true" lines="full">
+    <ion-icon name="clipboard-sharp"></ion-icon>
+    <ion-label>Políticas de privacidade  </ion-label>
+    <ion-note slot="end"></ion-note>
+  </ion-item>
+  <ion-item [button]="true" lines="full" >
+    <ion-icon name="trash-sharp" color="danger"></ion-icon>
+    <ion-label color="danger">Excluir conta  </ion-label>
+    <ion-note slot="end"></ion-note>
+  </ion-item>
+
+
+
+
+  <ion-button  id="present-alert" style="width: 90%; margin-left: 18px;" class="custom-button" >LogOut</ion-button>
+
+ 
+  <ion-alert trigger="present-alert" class="custom-alert" header="Deseja sair?" [buttons]="alertButtons"></ion-alert>
 </div>
-<form *ngIf="!cad && !logado">
+<div id="container">
+
+
+<form *ngIf="!cad && !cadt && !logado" >
+
   <h1>Formulário de Login</h1>
   <ion-input label-placement="floating" label="email" fill="outline" placeholder="insira seu email" #email></ion-input>
   <ion-input label="senha" type="password" label-placement="floating" fill="outline" placeholder="insira sua senha"
     #senha>
 
   </ion-input>
-  <ion-button expand="block" (click)="Logar(email.value, senha.value)">Login</ion-button>
 
-  <p>Não é cadastrado? <a (click)="cad=!cad">Cadastrar-se</a></p>
+  <ion-button  expand="block" (click)="Logar(email.value, senha.value)" class="custom-button" style="width: 90%; margin-left: 18px; height: 40px;">Login</ion-button> 
 
-  <ion-button fill="outline" expand="block" (click)="loginComGoogle()"><ion-thumbnail><img
-        src="../../../assets/logos/googleLogo.png"></ion-thumbnail>Login com google</ion-button>
+  <ion-button fill="outline" expand="block" (click)="loginComGoogle()" class="google-button" style="width: 90%; height: 45px;"><ion-thumbnail><img
+    src="../../../assets/logos/googleLogo.png"></ion-thumbnail>Login com google</ion-button>
+  <p style="margin-top: 20px">Não é cadastrado? <a (click)="cad=!cad" class="cadastro-login">Cadastrar-se</a></p>
+  <p style="margin-top: 10px">Quer ser um técnico parceiro? <a (click)="cadt=!cadt" class="cadastro-tec">Junte-se a nós</a></p>
+  
 </form>
+</div>
 
-<form *ngIf="cad">
+<div id="container">
+<form *ngIf="cad || cadt">
+
+
   <h1>Formulário de Cadastro</h1>
-  <ion-input label="email" label-placement="floating" fill="outline" placeholder="insira seu email" #email></ion-input>
+  <ion-input label="email" label-placement="floating" fill="outline" placeholder="insira seu email" #email ></ion-input>
   <ion-input label="senha" type="password" label-placement="floating" fill="outline" placeholder="insira sua senha"
     #senha></ion-input>
   <ion-input label="Repita sua senha" type="password" label-placement="floating" fill="outline"
     placeholder="insira novamente sua senha" #RpSenha></ion-input>
 
-  <ion-button expand="block" (click)="cadUser(email.value, senha.value, RpSenha.value)">Cadastrar</ion-button>
-  <p>Já é cadastrado? <a (click)="cad=!cad">fazer login</a></p>
+
+  <ion-button expand="block" (click)="cadUser(email.value, senha.value, RpSenha.value)" >Cadastrar</ion-button>
+  <p style="margin-top: 20px;">Já é cadastrado? <a (click)="trocaLogin()" class="cadastro-login">fazer login</a></p>
+
+ 
 </form>
+</div>
+
+
 <ion-toast [isOpen]="isToastOpen" message={{mensagem}} [duration]="5000" (didDismiss)="setOpen(false)"></ion-toast>

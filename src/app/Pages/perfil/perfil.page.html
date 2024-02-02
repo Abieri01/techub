@@ -1,18 +1,20 @@
-<ion-toolbar>
-  <ion-buttons slot="start">
-    <ion-menu-button></ion-menu-button>
-  </ion-buttons>
-</ion-toolbar>
 
 
-
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>TecHub</ion-title>
+  </ion-toolbar>
+</ion-header>
 
 
 <ion-content [fullscreen]="true">
   <swiper-container autoplay="3000" speed="800" pagination="true">
-    <swiper-slide><img src="../../../assets/logos/image.png"/></swiper-slide>
-    <swiper-slide><img src="../../../assets/logos/image (1).png"/></swiper-slide>
     <swiper-slide><img src="../../../assets/logos/image (2).png"/></swiper-slide>
+    <swiper-slide><img src="../../../assets/logos/intel-12a-geracao-1.jpg"/></swiper-slide>
+    <swiper-slide><img src="../../../assets/logos/lenovo-gaming-3i.jpg"/></swiper-slide>
   </swiper-container>
 
 
@@ -45,13 +47,13 @@
         </ion-thumbnail>
         <ion-label>Console PlayStation 5</ion-label>
       </ion-item>
-      <ion-button >Saiba mais</ion-button>
+      <ion-button class="custom-button" style="width: 90%; margin-left: 18px;">Saiba mais</ion-button>
       
     </ion-list>
   </ion-card-content>
 
   <div class="departs">
-    <ion-item [button]="true" lines="none" class="bola">
+    <ion-item [button]="true" lines="none" class="bola" (click)="departs()">
       <ion-icon name="apps-outline"></ion-icon>
       <ion-label>DEPARTAMENTOS  </ion-label>
       <ion-note slot="end">Ver todos</ion-note>
