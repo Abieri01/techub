@@ -30,11 +30,11 @@ produtos de maneira descomplicada. Além disso, a startup desenvolveu uma comuni
 
 ## Ferramentas de desenvolvimento
 
-- TypeScript (50,3%)
+- TypeScript (50,4%)
 
 - SCSS (23,9%)
 
-- HTML (24,2%)
+- HTML (26,6%)
 
 - JavaScript (1,6%)
 
