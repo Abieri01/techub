@@ -42,7 +42,7 @@ produtos de maneira descomplicada. Além disso, a startup desenvolveu uma comuni
 - **Cadastrar, Editar e Excluir produtos:**
 <br>
 
-<img src="https://github.com/albuquerque14/TecHub/assets/127431207/c831fb73-47bc-4a5c-9275-1c8d8ce79fa7" alt="LimeWire AI Studio Asset" />
+<img src="https://github.com/albuquerque14/TecHub/assets/127431207/f9b0e010-948e-47db-8260-00820d2f4a37" alt="LimeWire AI Studio Asset" />
 
 
 
