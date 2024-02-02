@@ -1,6 +1,41 @@
 
-<div *ngIf="logado" class="perfillogado">
+<div *ngIf="logado && user.email === 'adm@gmail.com'" class="perfillogado">
   
+  
+
+  <ion-item [button]="false" lines="full" class="icon">
+    <ion-avatar aria-hidden="true" slot="start">
+      <ion-img src={{user.foto}}></ion-img>
+    </ion-avatar>
+    <ion-icon name="pencil-sharp" slot="start"></ion-icon>
+    <ion-label>{{user.email}}</ion-label>
+  </ion-item>
+  <ion-item [button]="true" lines="full" (click)="cadastrarp()">
+    <ion-icon name="bag-add"></ion-icon>
+    <ion-label>Cadastrar Produtos</ion-label>
+    <ion-note slot="end"></ion-note>
+  </ion-item>
+  <ion-item [button]="true" lines="full" (click)="editarp()" >
+    <ion-icon name="create"></ion-icon>
+    <ion-label>Editar Produtos</ion-label>
+    <ion-note slot="end"></ion-note>
+  </ion-item>
+  <ion-item [button]="true" lines="full" (click)="excluirp()">
+    <ion-icon name="trash"></ion-icon>
+    <ion-label>Excluir Produtos</ion-label>
+    <ion-note slot="end"></ion-note>
+  </ion-item>
+
+
+
+
+  <ion-button  id="present-alert" style="width: 90%; margin-left: 18px;" class="custom-button" >LogOut</ion-button>
+
+ 
+  <ion-alert trigger="present-alert" class="custom-alert" header="Deseja sair?" [buttons]="alertButtons"></ion-alert>
+</div>
+
+<div *ngIf="logado && user.email !== 'adm@gmail.com'" class="perfillogado">
   <ion-item [button]="false" lines="full" class="icon">
     <ion-avatar aria-hidden="true" slot="start">
       <ion-img src={{user.foto}}></ion-img>
@@ -44,14 +79,12 @@
     <ion-note slot="end"></ion-note>
   </ion-item>
 
-
-
-
   <ion-button  id="present-alert" style="width: 90%; margin-left: 18px;" class="custom-button" >LogOut</ion-button>
 
  
   <ion-alert trigger="present-alert" class="custom-alert" header="Deseja sair?" [buttons]="alertButtons"></ion-alert>
 </div>
+
 <div id="container">
 
 
