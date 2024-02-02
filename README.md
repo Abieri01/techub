@@ -32,11 +32,11 @@ produtos de maneira descomplicada. Além disso, a startup desenvolveu uma comuni
 
 - TypeScript (50,4%)
 
-- SCSS (23,9%)
+- SCSS (21,9%)
 
 - HTML (26,6%)
 
-- JavaScript (1,6%)
+- JavaScript (1,1%)
 
 - IONIC (Framework)
 
