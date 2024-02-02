@@ -2,8 +2,23 @@ import { Component, OnInit } from '@angular/core';
 import { NavController, ToastController } from '@ionic/angular';
 import { collection, Firestore, getDocs, query, where } from '@angular/fire/firestore';
 import { addDoc } from 'firebase/firestore';
+
 import { Auth } from '@angular/fire/auth';
 import { PedidosService } from '../pedidos.service';
+
+
+interface Tecnico {
+  nome: string;
+  habilidades: string;
+  avaliacao: number;
+  tempoExperiencia: string;
+  horariosDisponiveis: string;
+  telefone: string;
+  email: string;
+  categoria: string; // Certifique-se de ter a propriedade 'categoria'
+  image: string;
+}
+
 
 @Component({
   selector: 'app-serv-tecnico',
@@ -15,11 +30,11 @@ export class ServTecnicoPage implements OnInit {
   isAlertOpen = false;
   alertButtons = ['Fechar'];
   searchTerm: string = '';
-  searchCategory: string = 'all';
   selectedTime: string = '';
   currentDate: string = new Date().toISOString();
   tecnicos: any[] = [];
-  tecnicosFiltrados: any[] = [];
+  searchCategory: string = 'all';
+  tecnicosFiltrados: any = [];
   searchResults: any[] = [];
   descricaoModal: string = '';
   dataModal: string = '';
@@ -34,6 +49,7 @@ export class ServTecnicoPage implements OnInit {
     private auth: Auth,
     private pedidosService: PedidosService
   ) { }
+
 
   isModalOpen = false;
 
@@ -52,7 +68,8 @@ export class ServTecnicoPage implements OnInit {
           horariosDisponiveis: doc.data()['horariosDisponiveis'],
           tempoExperiencia: doc.data()['tempoExperiencia'],
           telefone: doc.data()['telefone'],
-        },
+          image: doc.data()['image'] },
+
       ];
     });
 
@@ -84,6 +101,7 @@ export class ServTecnicoPage implements OnInit {
   }
 
   filterItems() {
+
     this.searchResults = this.tecnicos.filter((tecnico) => {
       if (this.searchCategory === 'above3stars') {
         // Lógica para filtrar técnicos com avaliação acima de 4 estrelas
@@ -144,6 +162,24 @@ export class ServTecnicoPage implements OnInit {
     } catch (error) {
       console.error('Erro ao fazer pedido: ', error);
     }
+
+    const searchTermLowerCase = this.searchCategory.toLowerCase();
+
+    if (searchTermLowerCase === 'all') {
+      // Se a categoria selecionada for 'Todas', exibe todos os tecnicos
+      this.tecnicosFiltrados = this.tecnicos;
+    } else {
+      // Caso contrário, realiza a filtragem combinada pelo nome e pela categoria
+      this.tecnicosFiltrados = this.tecnicos.filter((p: Tecnico) => 
+        p.habilidades.toLowerCase().includes(searchTermLowerCase) ||
+        (p.categoria && p.categoria.toLowerCase() === searchTermLowerCase)
+      );
+    }
+  }
+
+    
+  
+  
   }
 
   async presentToast() {
@@ -175,7 +211,5 @@ export class ServTecnicoPage implements OnInit {
     // Se não houver lógica específica, retorne uma avaliação padrão.
     return 0;
   }
-
-
 
 }

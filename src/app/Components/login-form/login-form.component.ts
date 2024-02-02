@@ -42,6 +42,7 @@ export class LoginFormComponent implements OnInit {
   horariosDisponiveis: string= '';
   cadt: boolean = false;
 
+
   setOpen(isOpen: boolean) {
     this.isToastOpen = isOpen;
   }
@@ -139,14 +140,18 @@ export class LoginFormComponent implements OnInit {
         const user = userCredential.user;
         console.log(user.email);
         this.mensagem = `Usuário: ${user.email} logado com sucesso!`;
+        this.user.email = userCredential.user.email;
         this.setOpen(true);
         this.logado = !this.logado;
       })
+      
       .catch((error) => {
         const errorCode = error.code;
         const errorMessage = error.message;
         console.error('Erro ao logar: ', errorMessage);
       });
+
+      
   }
 
   logout() {
@@ -203,6 +208,19 @@ export class LoginFormComponent implements OnInit {
       this.cad = !this.cad
     if (this.cadt)
       this.cadt = !this.cadt
+  }
+
+
+  cadastrarp() {
+    this.navCtrl.navigateForward('/cad-produtos'); // Substitua pelo caminho real do seu perfil
+  }
+
+  editarp() {
+    this.navCtrl.navigateForward('/edit-produtos'); // Substitua pelo caminho real do seu perfil
+  }
+
+  excluirp() {
+    this.navCtrl.navigateForward('/delete-produtos'); // Substitua pelo caminho real do seu perfil
   }
 
   

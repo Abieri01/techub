@@ -3,11 +3,25 @@ import { collection, Firestore, getDocs } from '@angular/fire/firestore';
 import { Storage } from '@angular/fire/storage';
 import { NavController } from '@ionic/angular';
 
+interface Produto {
+  categoria: string;
+  nome: string;
+  descricao: string;
+  preco: string;
+  qtd: number;
+  image: string;
+  // Adicione outras propriedades conforme necessário
+}
+
+
 @Component({
   selector: 'app-produtos',
   templateUrl: './produtos.page.html',
   styleUrls: ['./produtos.page.scss'],
 })
+
+
+
 export class ProdutosPage implements OnInit {
   darkMode = false;
   produtos: any = [];
@@ -53,29 +67,29 @@ export class ProdutosPage implements OnInit {
   }
 
   filterItems() {
-    switch (this.searchCategory) {
-      case 'marca':
-        // Implemente a lógica de filtragem por marca
-        break;
-      case 'tipoHardware':
-        // Implemente a lógica de filtragem por tipo de hardware
-        break;
-      case 'precoAbove':
-        // Implemente a lógica de filtragem por preço acima
-        break;
-      case 'precoBelow':
-        // Implemente a lógica de filtragem por preço abaixo
-        break;
-      default:
-        // Todas as outras categorias ou 'all' mostrarão todos os produtos
-        this.produtosFiltrados = this.produtos;
-        break;
+
+    const searchTermLowerCase = this.searchCategory.toLowerCase();
+  
+    if (searchTermLowerCase === 'all') {
+      // Se a categoria selecionada for 'Todas', exibe todos os produtos
+      this.produtosFiltrados = this.produtos;
+    } else {
+      // Caso contrário, realiza a filtragem combinada pelo nome e pela categoria
+      this.produtosFiltrados = this.produtos.filter((p: Produto) => 
+        p.nome.toLowerCase().includes(searchTermLowerCase) ||
+        (p.categoria && p.categoria.toLowerCase() === searchTermLowerCase)
+      );
     }
   }
+
+  
+
   formatarDescricao(descricao: string): string {
     // Lógica para formatar a descrição, se necessário
     return descricao;
   }
+
+
 
   compras:number=0
   comprar(produto: any){
@@ -83,13 +97,14 @@ export class ProdutosPage implements OnInit {
   }
 
 
-
-
   irParaCarrinho() {
     this.navCtrl.navigateForward('/carrinho');
 
 
+
+  }
+
 }
 
 
-}
+

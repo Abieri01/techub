@@ -12,7 +12,6 @@ export class AppComponent {
     { title: 'Promoções', url: '/folder/promocoes', icon: 'pricetags' },
     { title: 'Lojas', url: '/folder/lojas', icon: 'storefront' },
     { title: 'Perfil', url: '/folder/home', icon: 'person-circle' },
-    { title: 'Contato', url: '/folder/contato', icon: 'call' },
     { title: 'Serviço Técnico', url: '/serv-tecnico', icon: 'construct' },
   ];
 
