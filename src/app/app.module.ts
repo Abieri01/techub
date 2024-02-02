@@ -11,6 +11,11 @@ import { provideAuth, getAuth } from '@angular/fire/auth';
 import { provideStorage, getStorage } from '@angular/fire/storage';
 
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { ComprasService } from './compras.service';
+import { ProdutosPage } from './Pages/produtos/produtos.page';
+import { CarrinhoPage } from './Pages/carrinho/carrinho.page';
+
+
 
 const firebaseConfig = {
   apiKey: "AIzaSyCZF-NX9fIM3HBNyBivNmQ2VHLizUkZzP8",
@@ -29,7 +34,8 @@ const firebaseConfig = {
     provideFirestore(() => getFirestore()),
     provideStorage(() => getStorage()),
   ],
-  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
+  providers: [{ provide: RouteReuseStrategy,  useClass: IonicRouteStrategy,  },
+    ComprasService,],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })

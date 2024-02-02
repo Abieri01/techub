@@ -8,44 +8,43 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-fab slot="fixed" vertical="bottom" horizontal="end">
- 
-
-  <ion-fab-button (click)="irParaCarrinho()">
-
-    <ion-icon name="cart"></ion-icon>
-    <ion-badge color="danger">{{compras}}</ion-badge>
-  </ion-fab-button>
-</ion-fab>
 
 
 
-<ion-content>
+
+
   <ion-item>
     <ion-label>Categoria de Pesquisa</ion-label>
     <ion-select [(ngModel)]="searchCategory" (ionChange)="filterItems()">
       <ion-select-option value="all">Todas</ion-select-option>
-      <ion-select-option value="marca">Marca</ion-select-option>
-      <ion-select-option value="tipoHardware">Tipo de Hardware</ion-select-option>
-      <ion-select-option value="precoAbove">Preço Acima</ion-select-option>
-      <ion-select-option value="precoBelow">Preço Abaixo</ion-select-option>
-      <ion-select-option value="above3stars">Avaliação acima de 4 estrelas</ion-select-option>
-      <ion-select-option value="below3stars">Avaliação abaixo de 4 estrelas</ion-select-option>
+      <ion-select-option value="Placa de Vídeo">Placa de vídeo</ion-select-option>
+      <ion-select-option value="Processador">Processador</ion-select-option>
+      <ion-select-option value="Memória">Memória RAM</ion-select-option>
+      <ion-select-option value="Placa Mãe">Placa mãe</ion-select-option>
     </ion-select>
   </ion-item>
 
-  <ion-card *ngFor="let p of produtosFiltrados">
-    <img [src]="p.image" />
+  <ion-content>
+  <ion-card *ngFor="let produto of produtosFiltrados">
+    <img [src]="produto.image" />
     <ion-card-header>
-      <ion-card-title>{{ p.nome }}</ion-card-title>
+      <ion-card-title>{{ produto.nome }}</ion-card-title>
       <ion-card-subtitle>
-        <div class="pcort">{{ p.preco.replace('.', ',') }}</div>
+        <div class="pcort">{{ produto.preco.replace('.', ',') }}</div>
       </ion-card-subtitle>
     </ion-card-header>
     <ion-card-content *ngIf="mostrarDescricao">
-      <div [innerHTML]="formatarDescricao(p.descricao)"></div>
+      <div [innerHTML]="formatarDescricao(produto.descricao)"></div>
     </ion-card-content>
     <button class="info" (click)="mostrarDescricao = !mostrarDescricao">Mais informações</button>
-    <ion-button class="custom-button" (click)="comprar(p)" style="width: 90%;">Comprar</ion-button>
+    <ion-button class="custom-button" (click)="comprar()" (click)="adicionarAoCarrinho(produto)"  style="width: 90%;">Comprar</ion-button>
+
   </ion-card>
 </ion-content>
+
+<ion-fab slot="fixed" vertical="bottom" horizontal="end">
+  <ion-fab-button (click)="irParaCarrinho()">
+    <ion-icon name="cart"></ion-icon>
+    <ion-badge color="danger">{{comprasService.compras}}</ion-badge>
+  </ion-fab-button>
+</ion-fab>
