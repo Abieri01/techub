@@ -20,8 +20,10 @@
   </ion-item>
 
 
+
   <ion-card *ngFor="let tecnico of tecnicosFiltrados">
     <img [src]="tecnico.image" class="image" />
+
     <ion-card-header>
       <ion-card-title>{{ tecnico.nome }} - {{ tecnico.habilidades }}</ion-card-title>
       <ion-card-subtitle>
@@ -33,42 +35,52 @@
     <ion-card-content>
       Tempo de Experiencia - {{ tecnico.tempoExperiencia }}<br>
       Dias de atendimento - {{ tecnico.horariosDisponiveis }}<br>
-      Telefone para contato - {{ tecnico.telefone }}<br> 
+      Telefone para contato - {{ tecnico.telefone }}<br>
+
       Email - {{ tecnico.email }}<br>
     </ion-card-content>
 
 
+
     <ion-button id="{{tecnico.nome}}" class="custom-button" style="width: 90%; margin-left: 18px;">Contratar</ion-button> 
 
+
     <ion-modal id="example-modal" #modal trigger="{{tecnico.nome}}">
-  <ng-template>
-    <div class="wrapper">
-      <ion-list lines="none" style="width: 80%; margin-left: 42px">
-        <!-- Adicionando ion-datetime para escolher um horário -->
-        <ion-item button="true" detail="false">
-          <ion-icon name="person-circle"></ion-icon>
-          <h2 style="margin-top: 10px;">Descreva o problema</h2>
-          <textarea style="width: 100%; height: 100px; color:black; margin-left: 5px;"></textarea>
-        </ion-item>
+      <ng-template>
+        <div class="wrapper">
+          <ion-list lines="none" style="width: 80%; margin-left: 42px">
 
-        <ion-item button="true" detail="false" style="height: 80%;">
-          <ion-label>Escolha a data e hora</ion-label>
 
-          <ion-datetime display-Format="DD-MM-YYYY"></ion-datetime>
+            <ion-item button="true" detail="false">
+              <ion-icon name="person-circle"></ion-icon>
+              <h2 style="margin-top: 10px;">Descreva o problema</h2>
+              <textarea style="width: 100%; height: 100px; color: black; margin-left: 5px;"
+                [(ngModel)]="descricaoModal"></textarea>
+            </ion-item>
 
-        </ion-item>
+            <ion-item button="true" detail="false" style="height: 80%;">
+              <ion-label>Escolha a data</ion-label>
+              <input type="date" [(ngModel)]="dataModal">
+            </ion-item>
 
-        <ion-item button="true" detail="false" class="custom-button">
-          <ion-button style="width: 100%;" color="dark">Fazer pedido</ion-button> 
-        </ion-item>  
+            <ion-item button="true" detail="false" style="height: 80%;">
+              <ion-label>Escolha a hora</ion-label>
+              <input type="time" [(ngModel)]="horaModal">
+            </ion-item>
 
-        <ion-item button="true" detail="false" (click)="modal.dismiss()" class="custom-button">
-          <ion-button style="width: 100%;" color="dark">Fechar</ion-button>
-        </ion-item>
-      </ion-list>
-    </div>
-  </ng-template>
-</ion-modal>
+            <ion-item button="true" detail="false" class="custom-button">
+              <ion-button style="width: 100%;" color="dark"
+                (click)="fazerPedido(descricaoModal, dataModal, horaModal)">Fazer pedido</ion-button>
+            </ion-item>
+
+
+            <ion-item button="true" detail="false" (click)="modal.dismiss()" class="custom-button">
+              <ion-button style="width: 100%;" color="dark">Fechar</ion-button>
+            </ion-item>
+          </ion-list>
+        </div>
+      </ng-template>
+    </ion-modal>
 
   </ion-card>
 
