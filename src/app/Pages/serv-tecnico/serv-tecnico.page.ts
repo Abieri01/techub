@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { NavController, ToastController } from '@ionic/angular';
 import { collection, Firestore, getDocs, query, where } from '@angular/fire/firestore';
 import { addDoc } from 'firebase/firestore';
+import { Auth } from '@angular/fire/auth';
+import { PedidosService } from '../pedidos.service';
+
 
 interface Tecnico {
   nome: string;
@@ -12,7 +15,9 @@ interface Tecnico {
   telefone: string;
   email: string;
   categoria: string; // Certifique-se de ter a propriedade 'categoria'
+  image: string;
 }
+
 
 @Component({
   selector: 'app-serv-tecnico',
@@ -30,12 +35,20 @@ export class ServTecnicoPage implements OnInit {
   searchCategory: string = 'all';
   tecnicosFiltrados: any = [];
   searchResults: any[] = [];
+  descricaoModal: string = '';
+  dataModal: string = '';
+  horaModal: string = '';
+  pedidos: any[] = [];
+
 
   constructor(
     private navCtrl: NavController,
     private toastController: ToastController,
     private firestore: Firestore,
-  ) {}
+    private auth: Auth,
+    private pedidosService: PedidosService
+  ) { }
+
 
   isModalOpen = false;
 
@@ -54,7 +67,8 @@ export class ServTecnicoPage implements OnInit {
           horariosDisponiveis: doc.data()['horariosDisponiveis'],
           tempoExperiencia: doc.data()['tempoExperiencia'],
           telefone: doc.data()['telefone'],
-        },
+          image: doc.data()['image'] },
+
       ];
     });
 
@@ -67,6 +81,7 @@ export class ServTecnicoPage implements OnInit {
   }
 
   ngOnInit() {
+    
     this.checkAppMode();
     this.listarBanco();
     this.filterItems();
@@ -85,6 +100,68 @@ export class ServTecnicoPage implements OnInit {
   }
 
   filterItems() {
+
+    this.searchResults = this.tecnicos.filter((tecnico) => {
+      if (this.searchCategory === 'above3stars') {
+        // Lógica para filtrar técnicos com avaliação acima de 4 estrelas
+        return this.getAverageRating(tecnico) > 4;
+      } else if (this.searchCategory === 'below3stars') {
+        // Lógica para filtrar técnicos com avaliação 4 estrelas ou abaixo
+        return this.getAverageRating(tecnico) <= 4;
+      } else {
+        // Lógica para filtrar técnicos com habilidades correspondentes à categoria de pesquisa
+        return (
+          (this.searchCategory === 'all' || this.hasMatchingSkill(tecnico)) &&
+          (tecnico.nome.toLowerCase().includes(this.searchTerm.toLowerCase()))
+        );
+      }
+    });
+  }
+
+  hasMatchingSkill(tecnico: any): boolean {
+    // Verifica se a habilidade do técnico contém a categoria de pesquisa
+    return tecnico.habilidades.toLowerCase().includes(this.searchCategory.toLowerCase());
+  }
+
+  async fazerPedido(descricao: any, data: any, hora: any) {
+    try {
+      console.log('Valores recebidos:', descricao, data, hora);
+      const user = this.auth.currentUser;
+
+      if (user) {
+        const uid = (await this.auth.currentUser)?.uid;
+        
+        const docRef = await addDoc(collection(this.firestore, 'pedidosTec'), {
+          
+          uidTecnico: uid,
+          descricao: descricao,
+          data: data,
+          hora: hora,
+        });
+
+        this.pedidosService.adicionarPedido({
+          descricao: descricao,
+          data: data,
+          hora: hora,
+        });
+        
+        console.log('Pedido salvo no banco de dados');
+
+        const toast = await this.toastController.create({
+          message: 'Pedido realizado com sucesso!',
+          duration: 3000,
+        });
+
+        await toast.present();
+
+        // Restante do código, se necessário...
+      } else {
+        console.error('Usuário não está autenticado');
+      }
+    } catch (error) {
+      console.error('Erro ao fazer pedido: ', error);
+    }
+
     const searchTermLowerCase = this.searchCategory.toLowerCase();
 
     if (searchTermLowerCase === 'all') {
@@ -97,21 +174,6 @@ export class ServTecnicoPage implements OnInit {
         (p.categoria && p.categoria.toLowerCase() === searchTermLowerCase)
       );
     }
-  }
-
-    
-  
-  async fazerPedido(descricao: any, data: any, hora: any) {
-    const docRef = await addDoc(collection(this.firestore, 'pedidosTec'), {
-      descricao: descricao,
-      data: data,
-      hora: hora,
-    });
-    console.log('Salvo no banco de dados');
-    const toast = await this.toastController.create({
-      message: 'Pedido realizado com sucesso!',
-      duration: 3000,
-    });
   }
 
   async presentToast() {
@@ -143,4 +205,5 @@ export class ServTecnicoPage implements OnInit {
     // Se não houver lógica específica, retorne uma avaliação padrão.
     return 0;
   }
+
 }

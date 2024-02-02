@@ -210,6 +210,7 @@ export class LoginFormComponent implements OnInit {
       this.cadt = !this.cadt
   }
 
+
   cadastrarp() {
     this.navCtrl.navigateForward('/cad-produtos'); // Substitua pelo caminho real do seu perfil
   }

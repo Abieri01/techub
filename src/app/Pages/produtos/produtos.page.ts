@@ -10,6 +10,9 @@ import { ComprasService } from '../../compras.service';
 
 
 
+
+
+
 @Component({
   selector: 'app-produtos',
   templateUrl: './produtos.page.html',

@@ -9,6 +9,7 @@ import { provideFirebaseApp, initializeApp } from '@angular/fire/app';
 import { getFirestore, provideFirestore } from '@angular/fire/firestore';
 import { provideAuth, getAuth } from '@angular/fire/auth';
 import { provideStorage, getStorage } from '@angular/fire/storage';
+import { PedidoObservavelService } from '../app/pedido-observavel.service'
 
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { ComprasService } from './compras.service';
@@ -38,5 +39,6 @@ const firebaseConfig = {
     ComprasService,],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
+  
 })
 export class AppModule {}
