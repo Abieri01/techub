@@ -13,6 +13,7 @@ interface Produto {
   // Adicione outras propriedades conforme necessário
 }
 
+
 @Component({
   selector: 'app-produtos',
   templateUrl: './produtos.page.html',
@@ -28,7 +29,7 @@ export class ProdutosPage implements OnInit {
   searchTerm: string = '';
   searchCategory: string = 'all';
   mostrarDescricao = false;
-  
+
   constructor(private storage: Storage, private firestore: Firestore, private navCtrl: NavController) {}
 
   goToProfilePage() {
@@ -66,6 +67,7 @@ export class ProdutosPage implements OnInit {
   }
 
   filterItems() {
+
     const searchTermLowerCase = this.searchCategory.toLowerCase();
   
     if (searchTermLowerCase === 'all') {
@@ -81,20 +83,28 @@ export class ProdutosPage implements OnInit {
   }
 
   
+
   formatarDescricao(descricao: string): string {
     // Lógica para formatar a descrição, se necessário
     return descricao;
   }
-  
+
+
+
   compras:number=0
   comprar(produto: any){
     this.compras++
   }
 
+
   irParaCarrinho() {
     this.navCtrl.navigateForward('/carrinho');
 
 
+
   }
+
 }
+
+
 
