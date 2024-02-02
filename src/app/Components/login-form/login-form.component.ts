@@ -223,6 +223,10 @@ export class LoginFormComponent implements OnInit {
     this.navCtrl.navigateForward('/delete-produtos'); // Substitua pelo caminho real do seu perfil
   }
 
+  tec() {
+    this.navCtrl.navigateForward('/pedidos-suporte'); // Substitua pelo caminho real do seu perfil
+  }
+
   
   constructor(private auth: Auth, private firestore: Firestore, private navCtrl: NavController) { }
 
