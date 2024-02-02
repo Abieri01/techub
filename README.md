@@ -28,6 +28,14 @@ produtos de maneira descomplicada. Além disso, a startup desenvolveu uma comuni
   
 - **Colaboração entre Técnicos:** A plataforma oferece um espaço exclusivo para técnicos de informática colaborarem, trocarem experiências e otimizarem seus serviços de consertos em domicílio.
 
+- **Carrinho de compras:** 
+
+<img src="https://github.com/albuquerque14/TecHub/assets/127431207/2edbd75b-021b-474b-8646-2104c31b7b06" alt="LimeWire AI Studio Asset" />
+
+- **Contratar técnicos:**
+
+<img src="https://github.com/albuquerque14/TecHub/assets/127431207/2edbd75b-021b-474b-8646-2104c31b7b06" alt="LimeWire AI Studio Asset" />
+
 
 
 ## Ferramentas de desenvolvimento
