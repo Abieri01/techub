@@ -21,9 +21,7 @@
 
 
   <ion-card *ngFor="let tecnico of tecnicosFiltrados">
-    <div class="rounded-image">
-      <img alt="Silhouette of mountains" src="https://ionicframework.com/docs/img/demos/card-media.png" />
-    </div>
+    <img [src]="tecnico.image" class="image" />
     <ion-card-header>
       <ion-card-title>{{ tecnico.nome }} - {{ tecnico.habilidades }}</ion-card-title>
       <ion-card-subtitle>
@@ -40,7 +38,7 @@
     </ion-card-content>
 
 
-    <ion-button id="{{tecnico.nome}}" class="custom-button" style="width: 90%; margin-left: 18px;">Contratar</ion-button>  <!-- (click)="contratar(tecnico)" -->
+    <ion-button id="{{tecnico.nome}}" class="custom-button" style="width: 90%; margin-left: 18px;">Contratar</ion-button> 
 
     <ion-modal id="example-modal" #modal trigger="{{tecnico.nome}}">
   <ng-template>
