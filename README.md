@@ -31,10 +31,19 @@ produtos de maneira descomplicada. Além disso, a startup desenvolveu uma comuni
 - **Carrinho de compras:** 
 
 <img src="https://github.com/albuquerque14/TecHub/assets/127431207/2edbd75b-021b-474b-8646-2104c31b7b06" alt="LimeWire AI Studio Asset" />
+<br><br>
 
 - **Contratar técnicos:**
+<br>
 
-<img src="https://github.com/albuquerque14/TecHub/assets/127431207/2edbd75b-021b-474b-8646-2104c31b7b06" alt="LimeWire AI Studio Asset" />
+<img src="https://github.com/albuquerque14/TecHub/assets/127431207/c831fb73-47bc-4a5c-9275-1c8d8ce79fa7" alt="LimeWire AI Studio Asset" />
+<br><br>
+
+- **Cadastrar, Editar e Excluir produtos:**
+<br>
+
+<img src="https://github.com/albuquerque14/TecHub/assets/127431207/c831fb73-47bc-4a5c-9275-1c8d8ce79fa7" alt="LimeWire AI Studio Asset" />
+
 
 
 
